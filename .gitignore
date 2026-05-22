@@ -1,0 +1,4 @@
+node_modules/
+temporary screenshots/
+*.backup-*.html
+Screenshot*.png
