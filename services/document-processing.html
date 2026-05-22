@@ -35,12 +35,13 @@
 </nav>
 
 <!-- HERO -->
-<section class="service-hero">
-  <div class="service-hero-glow"></div>
-  <div class="service-hero-content fade-up">
-    <a href="/#services" class="back-link">← All services</a>
+<section class="sv-hero">
+  <div class="sv-hero-glow"></div>
+  <div class="sv-hero-content fade-up">
+    <a href="/#services" class="sv-back">&larr; All services</a>
+    <span class="sv-eyebrow">Document Processing</span>
     <h1>Document <em>Processing.</em></h1>
-    <p class="hero-sub">Your team's time is too valuable for data entry. We automate it — completely.</p>
+    <p class="sv-hero-sub">Your team's time is too valuable for data entry. We automate it — completely.</p>
     <a class="btn btn-primary btn-hero" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">
       Get a free audit
       <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -49,97 +50,190 @@
 </section>
 
 <!-- STATS -->
-<div class="section" style="padding-top: 0;">
-  <div class="stat-trio fade-up">
-    <div class="stat-trio-item">
-      <div class="stat-trio-n"><em>45</em> min</div>
-      <div class="stat-trio-l">average time spent per<br>document, manually</div>
-    </div>
-    <div class="stat-trio-item">
-      <div class="stat-trio-n"><em>2</em> min</div>
-      <div class="stat-trio-l">time required with<br>automation in place</div>
-    </div>
-    <div class="stat-trio-item">
-      <div class="stat-trio-n">~<em>0</em></div>
-      <div class="stat-trio-l">human errors in<br>data extraction</div>
+<div class="sv-stats-bar fade-up">
+  <div class="sv-stats-card">
+    <div class="sv-stat">
+      <div class="sv-stat-n"><em>45</em> min</div>
+      <div class="sv-stat-l">average time spent per<br>document, manually</div>
+    </div>    <div class="sv-stat">
+      <div class="sv-stat-n"><em>2</em> min</div>
+      <div class="sv-stat-l">time required with<br>automation in place</div>
+    </div>    <div class="sv-stat">
+      <div class="sv-stat-n">~<em>0</em></div>
+      <div class="sv-stat-l">human errors in<br>data extraction</div>
     </div>
   </div>
 </div>
 
-<hr class="divider">
-
-<!-- PROBLEM -->
-<div class="section">
-  <div class="two-col">
-    <div class="col-text">
-      <p class="eyebrow fade-up">The problem</p>
-      <h2 class="section-h fade-up">Hours lost every day<br>to work a computer<br>could do.</h2>
-      <p class="section-p fade-up">Invoices come in. Someone opens them, reads the details, types the vendor name into one system, the amount into another, checks it against something else, and then moves on to the next one. Multiply that by every document your team handles every day. It adds up to a staggering amount of time — spent on work that requires zero judgment, zero creativity, and zero expertise.</p>
-      <p class="section-p fade-up" style="margin-top: 18px;">And because it's repetitive, manual, and tedious, it's also where errors happen. A wrong digit in an amount. A misclassified expense. A vendor entered slightly differently than last time. Small mistakes that create real problems downstream.</p>
-      <div class="highlight-block fade-up">
-        <p>Document processing automation is one of the most <em>predictable</em> and <em>high-ROI</em> automations we build. No AI agent required — just clean, reliable logic that handles the flow of data exactly as it should.</p>
+<!-- WORKFLOW MOCKUP -->
+<div class="sv-mockup-section">
+  <div class="sv-mockup-head fade-up">
+    <span class="sv-label">See It In Action</span>
+    <h2 class="sv-heading" style="text-align:center; max-width:520px; margin:0 auto;">45 minutes becomes<br>2 minutes.</h2>
+  </div>
+  <div class="sv-mockup-wrap fade-up">
+    <div class="sv-mockup-arrows">
+      <button class="sv-arrow-btn" aria-label="Previous">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3L5 7l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="sv-arrow-btn" aria-label="Next">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="sv-browser">
+      <div class="sv-browser-bar">
+        <div class="sv-browser-dots">
+          <span style="background:#FF5F57;"></span>
+          <span style="background:#FEBC2E;"></span>
+          <span style="background:#28C840;"></span>
+        </div>
+        <div class="sv-browser-title">Invoice Processing Pipeline</div>
+        <div class="sv-browser-status">
+          <span class="sv-status-dot"></span>
+          Active, processing 40 docs/day
+        </div>
+      </div>
+      <div class="sv-browser-sub">From inbox to accounting in under 2 minutes — no data entry required</div>
+      <svg viewBox="0 0 900 272" style="width:100%;display:block;background:#F8F9FA;" aria-hidden="true">
+<defs>
+  <marker id="a-tl" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+    <polygon points="0,0 7,3.5 0,7" fill="#00B4B0"/>
+  </marker>
+  <marker id="a-gr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+    <polygon points="0,0 7,3.5 0,7" fill="#D1D5DB"/>
+  </marker>
+</defs>
+<!-- Import card -->
+<rect x="18" y="86" width="140" height="100" rx="10" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+<text x="34" y="106" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" font-weight="600" letter-spacing="1.5">ARRIVES VIA</text>
+<line x1="18" y1="113" x2="158" y2="113" stroke="#F3F4F6"/>
+<rect x="34" y="120" width="14" height="14" rx="2" fill="none" stroke="#00B4B0" stroke-width="1.3"/>
+<path d="M34,121 L41,127 L48,121" fill="none" stroke="#00B4B0" stroke-width="1.3"/>
+<text x="53" y="131" font-family="DM Sans,sans-serif" font-size="11.5" fill="#374151" font-weight="500">Email attachment</text>
+<line x1="18" y1="147" x2="158" y2="147" stroke="#F3F4F6"/>
+<rect x="34" y="154" width="14" height="14" rx="2" fill="none" stroke="#6B7280" stroke-width="1.3"/>
+<text x="39" y="165" font-family="DM Sans,sans-serif" font-size="10" fill="#6B7280">📁</text>
+<text x="53" y="165" font-family="DM Sans,sans-serif" font-size="11.5" fill="#374151" font-weight="500">Shared folder</text>
+<line x1="18" y1="179" x2="158" y2="179" stroke="#F3F4F6"/>
+<rect x="34" y="185" width="14" height="12" rx="2" fill="none" stroke="#6B7280" stroke-width="1.3"/>
+<text x="39" y="195" font-family="DM Sans,sans-serif" font-size="9" fill="#6B7280">↑</text>
+<text x="53" y="196" font-family="DM Sans,sans-serif" font-size="11.5" fill="#374151" font-weight="500">Upload portal</text>
+<!-- Connections -->
+<path d="M158,136 C185,136 195,136 208,136" fill="none" stroke="#D1D5DB" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#a-gr)"/>
+<path d="M264,136 L292,136" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+<path d="M368,136 L396,136" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+<path d="M450,136 C476,136 490,75 518,75" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+<path d="M450,136 C476,136 490,197 518,197" fill="none" stroke="#D1D5DB" stroke-width="1.2" stroke-dasharray="3,4" opacity="0.6" marker-end="url(#a-gr)"/>
+<!-- Extract Data node -->
+<circle cx="236" cy="136" r="28" fill="rgba(0,180,176,0.12)"/>
+<circle cx="236" cy="136" r="22" fill="#00B4B0"/>
+<rect x="227" y="127" width="18" height="18" rx="3" fill="none" stroke="white" stroke-width="1.6"/>
+<line x1="230" y1="133" x2="245" y2="133" stroke="white" stroke-width="1.4"/>
+<line x1="230" y1="137" x2="245" y2="137" stroke="white" stroke-width="1.4"/>
+<line x1="230" y1="141" x2="240" y2="141" stroke="white" stroke-width="1.4"/>
+<text x="236" y="174" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Extract</text>
+<text x="236" y="186" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Data</text>
+<!-- Validate node -->
+<circle cx="330" cy="136" r="28" fill="rgba(0,180,176,0.12)"/>
+<circle cx="330" cy="136" r="22" fill="#00B4B0"/>
+<path d="M330,126 C330,126 322,129 322,134 C322,139 326,143 330,145 C334,143 338,139 338,134 C338,129 330,126 330,126z" fill="none" stroke="white" stroke-width="1.6"/>
+<path d="M326.5,136 L329,138.5 L333.5,133.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="330" y="174" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Validate</text>
+<text x="330" y="186" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">&amp; Check</text>
+<!-- Route node -->
+<circle cx="422" cy="136" r="28" fill="rgba(0,180,176,0.12)"/>
+<circle cx="422" cy="136" r="22" fill="#00B4B0"/>
+<path d="M414,136 L430,136 M424,130 L430,136 L424,142" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="422" y="174" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Route</text>
+<text x="422" y="186" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">&amp; File</text>
+<!-- QuickBooks card -->
+<rect x="518" y="45" width="178" height="60" rx="9" fill="white" stroke="#E5E7EB"/>
+<text x="534" y="62" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" font-weight="600" letter-spacing="0.8">QUICKBOOKS — synced</text>
+<text x="534" y="78" font-family="DM Sans,sans-serif" font-size="12.5" fill="#111827" font-weight="600">Invoice #4291 filed</text>
+<circle cx="535" cy="93" r="4" fill="#22C55E"/>
+<text x="544" y="96" font-family="DM Sans,sans-serif" font-size="10.5" fill="#6B7280">Today 9:14am</text>
+<!-- Flagged card (dimmer) -->
+<rect x="518" y="167" width="178" height="60" rx="9" fill="white" stroke="#E5E7EB" opacity="0.6"/>
+<text x="534" y="184" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" font-weight="600" letter-spacing="0.8" opacity="0.6">REVIEW QUEUE — flagged</text>
+<text x="534" y="200" font-family="DM Sans,sans-serif" font-size="12.5" fill="#6B7280" font-weight="500">Amount mismatch</text>
+<circle cx="535" cy="215" r="4" fill="#F59E0B" opacity="0.7"/>
+<text x="544" y="218" font-family="DM Sans,sans-serif" font-size="10.5" fill="#9CA3AF" opacity="0.6">Needs review</text>
+</svg>
+      <div class="sv-browser-footer">
+        <span class="sv-dot"></span>
+        <span class="sv-dot on"></span>
+        <span class="sv-dot"></span>
+        <span class="sv-dot"></span>
+        <span class="sv-dot"></span>
       </div>
     </div>
+  </div>
+</div>
+
+<hr class="sv-divider">
+
+<!-- THE PROBLEM -->
+<div class="sv-section">
+  <div class="sv-problem-grid fade-up">
     <div>
-      <p class="eyebrow fade-up">How it works</p>
-      <h2 class="section-h fade-up" style="margin-bottom: 0;">45 minutes becomes<br>2 minutes.</h2>
-      <div class="steps-wide fade-up">
-        <div class="step">
-          <span class="step-n">01</span>
-          <div>
-            <h3>Document arrives</h3>
-            <p>The workflow triggers the moment a new document lands — via email, a shared folder, an upload portal, or any other source your business already uses.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">02</span>
-          <div>
-            <h3>Data extracted</h3>
-            <p>The automation pulls the relevant fields — vendor name, invoice number, date, line items, totals, tax, and anything else you need — cleanly and consistently every time.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">03</span>
-          <div>
-            <h3>Validated & checked</h3>
-            <p>The extracted data is checked against your chart of accounts, approved vendor list, or any other reference. Duplicates are flagged. Anomalies are surfaced. Everything else moves forward automatically.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">04</span>
-          <div>
-            <h3>Routed to the right place</h3>
-            <p>Clean data gets pushed exactly where it needs to go — your accounting software, project management tool, approval queue, or all three. No copy-pasting.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">05</span>
-          <div>
-            <h3>Human reviews in 2 minutes</h3>
-            <p>A team member gets a clean summary to approve or flag. Everything is pre-filled. They're reviewing, not entering. What used to take 45 minutes now takes two.</p>
-          </div>
-        </div>
+      <span class="sv-label">The Problem</span>
+      <h2 class="sv-heading">Hours lost every day to work a computer could do.</h2>
+      <p class="sv-body">Invoices arrive. Someone opens them, reads the details, types the vendor name into one system and the amount into another, checks it against something else, then moves on to the next one. Multiply that by every document your team handles daily — it adds up to a staggering amount of time spent on work that requires zero judgment or expertise.</p>
+      <p class="sv-body">And because it's repetitive and tedious, it's also where errors happen. A wrong digit. A misclassified expense. A vendor entered slightly differently than last time. Small mistakes that create real problems downstream.</p>
+      <div class="sv-pullquote">
+        <p>Document processing automation is one of the most <em>predictable</em> and <em>high-ROI</em> automations we build. No AI agent required — just clean, reliable logic that handles data flow exactly as it should.</p>
       </div>
+    </div>
+    <div class="sv-ghost-wrap">
+      <div class="sv-ghost-stat">45min</div>
+      <div class="sv-ghost-sub">average per document manually</div>
     </div>
   </div>
 </div>
 
-<hr class="divider">
+<hr class="sv-divider">
+
+<!-- HOW IT WORKS -->
+<div class="sv-section fade-up">
+  <span class="sv-label">How It Works</span>
+  <h2 class="sv-heading">Document in. Clean data out.</h2>
+  <div class="sv-timeline">
+    <div class="sv-tl-item">
+      <div class="sv-tl-title">Document arrives</div>
+      <p class="sv-tl-body">The workflow triggers the moment a new document lands — via email, shared folder, or upload portal. Any source your business already uses.</p>
+    </div>    <div class="sv-tl-item">
+      <div class="sv-tl-title">Data extracted</div>
+      <p class="sv-tl-body">The automation pulls the relevant fields — vendor name, invoice number, date, line items, totals, tax — cleanly and consistently every time.</p>
+    </div>    <div class="sv-tl-item">
+      <div class="sv-tl-title">Validated & checked</div>
+      <p class="sv-tl-body">Extracted data is checked against your chart of accounts or approved vendor list. Duplicates are flagged. Anomalies are surfaced. Everything else moves forward automatically.</p>
+    </div>    <div class="sv-tl-item">
+      <div class="sv-tl-title">Routed to the right place</div>
+      <p class="sv-tl-body">Clean data gets pushed exactly where it needs to go — your accounting software, project management tool, or approval queue. No copy-pasting.</p>
+    </div>    <div class="sv-tl-item">
+      <div class="sv-tl-title">Human reviews in 2 minutes</div>
+      <p class="sv-tl-body">A team member gets a clean summary to approve or flag. Everything is pre-filled. They're reviewing, not entering.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="sv-divider">
 
 <!-- WHO IT'S FOR -->
-<div class="section">
-  <p class="eyebrow fade-up">Who it's for</p>
-  <h2 class="section-h fade-up">If your team moves<br>information between systems,<br>this is for you.</h2>
-  <p class="section-p fade-up">Document processing automation works best in businesses where high document volume meets the need for accuracy — and where the people doing this work have better things they could be doing.</p>
-  <div class="industry-grid fade-up">
-    <span class="industry-pill">Insurance companies</span>
-    <span class="industry-pill">Law firms</span>
-    <span class="industry-pill">Construction companies</span>
-    <span class="industry-pill">Accounting firms</span>
-    <span class="industry-pill">Logistics & freight</span>
-    <span class="industry-pill">Property management</span>
-    <span class="industry-pill">Healthcare practices</span>
-    <span class="industry-pill">E-commerce operations</span>
+<div class="sv-section fade-up">
+  <span class="sv-label">Who It&rsquo;s For</span>
+  <h2 class="sv-heading">If your team moves information<br>between systems, this is for you.</h2>
+  <p class="sv-body">Document processing automation works best in businesses where high document volume meets the need for accuracy — and where the people doing this work have better things they could be doing.</p>
+  <div class="sv-pills">
+    <span class="sv-pill">Insurance companies</span>
+    <span class="sv-pill">Law firms</span>
+    <span class="sv-pill">Construction companies</span>
+    <span class="sv-pill">Accounting firms</span>
+    <span class="sv-pill">Logistics &amp; freight</span>
+    <span class="sv-pill">Property management</span>
+    <span class="sv-pill">Healthcare practices</span>
+    <span class="sv-pill">E-commerce operations</span>
+
   </div>
 </div>
 
@@ -159,26 +253,76 @@
 </div>
 
 <footer class="footer">
-  <div class="footer-l">
-    <a class="nav-logo" href="/" style="text-decoration:none; margin-bottom:4px;">
-      <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
-        <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
-        <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
-        <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
-        <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
-        <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
-        <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
-        <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text" style="font-size:18px;">flowbuild</span>
-    </a>
-    <span class="footer-copy">© 2025 flowbuild. All rights reserved.</span>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/" style="text-decoration:none;">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+            <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
+            <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
+            <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
+            <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
+            <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text" style="font-size:19px;">flowbuild</span>
+        </a>
+        <p class="footer-tagline">We build automation systems that help growing businesses move faster — without growing their headcount. Every workflow we build saves time and compounds results.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Services</p>
+          <ul>
+            <li><a href="/services/speed-to-lead.html">Speed to Lead</a></li>
+            <li><a href="/services/follow-up-sequences.html">Follow-up Sequences</a></li>
+            <li><a href="/services/document-processing.html">Document Processing</a></li>
+            <li><a href="/services/database-reactivation.html">Database Reactivation</a></li>
+            <li><a href="/services/custom-integrations.html">Custom Integrations</a></li>
+            <li><a href="/services/reporting-and-alerts.html">Reporting &amp; Alerts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Company</p>
+          <ul>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#process">How it works</a></li>
+            <li><a href="/#results">Results</a></li>
+            <li><a href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Contact</p>
+          <ul>
+            <li><a href="mailto:hello@flowbuild.ca">hello@flowbuild.ca</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 flowbuild. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://x.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="X / Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://instagram.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="mailto:hello@flowbuild.ca" class="footer-social-link" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+      <button class="footer-top-btn" onclick="window.scroll({top:0,behavior:'smooth'})" aria-label="Back to top">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
   </div>
-  <ul class="footer-links">
-    <li><a href="#">Privacy</a></li>
-    <li><a href="#">Terms</a></li>
-    <li><a href="mailto:hello@flowbuild.ca">hello@flowbuild.ca</a></li>
-  </ul>
 </footer>
 
 <script>

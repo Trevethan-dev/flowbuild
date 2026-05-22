@@ -34,13 +34,14 @@
   </a>
 </nav>
 
-<!-- HERO -->
-<section class="service-hero">
-  <div class="service-hero-glow"></div>
-  <div class="service-hero-content fade-up">
-    <a href="/#services" class="back-link">← All services</a>
+<!-- ── SECTION 1: HERO ── -->
+<section class="sv-hero">
+  <div class="sv-hero-glow"></div>
+  <div class="sv-hero-content fade-up">
+    <a href="/#services" class="sv-back">← All services</a>
+    <span class="sv-eyebrow">Speed to Lead</span>
     <h1>Speed to <em>Lead.</em></h1>
-    <p class="hero-sub">The businesses that respond first, win. We make sure that's always you.</p>
+    <p class="sv-hero-sub">The businesses that respond first, win. We make sure that's always you.</p>
     <a class="btn btn-primary btn-hero" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">
       Get a free audit
       <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -48,96 +49,228 @@
   </div>
 </section>
 
-<!-- STATS -->
-<div class="section" style="padding-top: 0;">
-  <div class="stat-trio fade-up">
-    <div class="stat-trio-item">
-      <div class="stat-trio-n"><em>10×</em></div>
-      <div class="stat-trio-l">more likely to convert when<br>you respond within 5 minutes</div>
+<!-- ── SECTION 2: STATS BAR ── -->
+<div class="sv-stats-bar fade-up">
+  <div class="sv-stats-card">
+    <div class="sv-stat">
+      <div class="sv-stat-n"><em>10×</em></div>
+      <div class="sv-stat-l">more likely to convert when<br>you respond within 5 minutes</div>
     </div>
-    <div class="stat-trio-item">
-      <div class="stat-trio-n"><em>47</em> hrs</div>
-      <div class="stat-trio-l">average business response<br>time to a new lead</div>
+    <div class="sv-stat">
+      <div class="sv-stat-n"><em>47</em> hrs</div>
+      <div class="sv-stat-l">average business response<br>time to a new lead</div>
     </div>
-    <div class="stat-trio-item">
-      <div class="stat-trio-n">&lt;<em>90</em> sec</div>
-      <div class="stat-trio-l">your response time<br>with this automation</div>
+    <div class="sv-stat">
+      <div class="sv-stat-n">&lt;<em>90</em> sec</div>
+      <div class="sv-stat-l">your response time<br>with this automation</div>
     </div>
   </div>
 </div>
 
-<hr class="divider">
+<!-- ── SECTION 3: WORKFLOW MOCKUP ── -->
+<div class="sv-mockup-section">
+  <div class="sv-mockup-head fade-up">
+    <span class="sv-label">See It In Action</span>
+    <h2 class="sv-heading" style="text-align:center; max-width:500px; margin: 0 auto;">From form submit to<br>replied — in seconds.</h2>
+  </div>
+  <div class="sv-mockup-wrap fade-up">
+    <div class="sv-mockup-arrows">
+      <button class="sv-arrow-btn" aria-label="Previous">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3L5 7l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="sv-arrow-btn" aria-label="Next">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="sv-browser">
+      <div class="sv-browser-bar">
+        <div class="sv-browser-dots">
+          <span style="background:#FF5F57;"></span>
+          <span style="background:#FEBC2E;"></span>
+          <span style="background:#28C840;"></span>
+        </div>
+        <div class="sv-browser-title">Instant Lead Response</div>
+        <div class="sv-browser-status">
+          <span class="sv-status-dot"></span>
+          Active, 24/7
+        </div>
+      </div>
+      <div class="sv-browser-sub">New lead to personalized reply in under 60 seconds, 24/7</div>
 
-<!-- PROBLEM -->
-<div class="section">
-  <div class="two-col">
-    <div class="col-text">
-      <p class="eyebrow fade-up">The problem</p>
-      <h2 class="section-h fade-up">By the time you call back,<br>they've moved on.</h2>
-      <p class="section-p fade-up">When someone fills out a form on your website, requests a quote, or calls in an inquiry, that moment of interest is the peak of their intent. They are ready to buy — right now. Research consistently shows that contacting a lead within five minutes makes you up to ten times more likely to convert them compared to waiting thirty minutes. And yet the average business takes 47 hours to follow up.</p>
-      <p class="section-p fade-up" style="margin-top: 18px;">By that point, the prospect has already talked to two of your competitors, forgot they even reached out, or solved the problem themselves. You didn't lose that lead because your price was wrong or your service was bad. You lost it because you were slow.</p>
-      <div class="highlight-block fade-up">
+      <!-- SVG workflow canvas -->
+      <svg viewBox="0 0 900 272" style="width:100%;display:block;background:#F8F9FA;" aria-hidden="true">
+
+        <!-- ── IMPORT CARD ── -->
+        <rect x="18" y="76" width="140" height="120" rx="10" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+        <text x="33" y="96" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" font-weight="600" letter-spacing="1.5">IMPORT</text>
+        <line x1="18" y1="103" x2="158" y2="103" stroke="#F3F4F6" stroke-width="1"/>
+        <!-- Website Form row -->
+        <circle cx="40" cy="121" r="7" fill="none" stroke="#00B4B0" stroke-width="1.4"/>
+        <ellipse cx="40" cy="121" rx="3.5" ry="7" fill="none" stroke="#00B4B0" stroke-width="1.4"/>
+        <line x1="33" y1="121" x2="47" y2="121" stroke="#00B4B0" stroke-width="1.4"/>
+        <text x="53" y="125" font-family="DM Sans,sans-serif" font-size="11.5" fill="#374151" font-weight="500">Website Form</text>
+        <line x1="18" y1="136" x2="158" y2="136" stroke="#F3F4F6" stroke-width="1"/>
+        <!-- Facebook row -->
+        <rect x="33" y="143" width="14" height="14" rx="3" fill="#1877F2"/>
+        <text x="37.5" y="154" font-family="Arial,sans-serif" font-size="10" fill="white" font-weight="800">f</text>
+        <text x="53" y="154" font-family="DM Sans,sans-serif" font-size="11.5" fill="#374151" font-weight="500">Facebook Ads</text>
+        <line x1="18" y1="168" x2="158" y2="168" stroke="#F3F4F6" stroke-width="1"/>
+        <!-- Google row -->
+        <rect x="33" y="174" width="14" height="14" rx="3" fill="#4285F4"/>
+        <text x="37" y="184" font-family="Arial,sans-serif" font-size="9" fill="white" font-weight="700">G</text>
+        <text x="53" y="184" font-family="DM Sans,sans-serif" font-size="11.5" fill="#374151" font-weight="500">Google Ads</text>
+
+        <!-- ── CONNECTION PATHS ── -->
+        <defs>
+          <marker id="a-tl" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <polygon points="0,0 7,3.5 0,7" fill="#00B4B0"/>
+          </marker>
+          <marker id="a-gr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <polygon points="0,0 7,3.5 0,7" fill="#D1D5DB"/>
+          </marker>
+        </defs>
+        <!-- Import → Qualify -->
+        <path d="M158,136 C185,136 195,136 212,136" fill="none" stroke="#D1D5DB" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#a-gr)"/>
+        <!-- Qualify → Route to Rep -->
+        <path d="M268,136 C300,136 332,75 362,75" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+        <!-- Qualify → Send Reply -->
+        <path d="M268,136 C300,136 332,197 362,197" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+        <!-- Qualify → Nurture (dimmer) -->
+        <path d="M268,136 C300,136 342,250 366,250" fill="none" stroke="#D1D5DB" stroke-width="1.2" stroke-dasharray="3,4" opacity="0.55"/>
+        <!-- Route → Slack -->
+        <path d="M408,75 L438,75" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+        <!-- Reply → Email -->
+        <path d="M408,197 L438,197" fill="none" stroke="#00B4B0" stroke-width="1.5" marker-end="url(#a-tl)"/>
+
+        <!-- ── QUALIFY & SCORE NODE ── -->
+        <circle cx="240" cy="136" r="30" fill="rgba(0,180,176,0.12)"/>
+        <circle cx="240" cy="136" r="24" fill="#00B4B0"/>
+        <path d="M240,126 C240,126 232,129 232,134 C232,139 236,143 240,145 C244,143 248,139 248,134 C248,129 240,126 240,126z" fill="none" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M236.5,136 L239,138.5 L243.5,133.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="240" y="174" font-family="DM Sans,sans-serif" font-size="10.5" fill="#374151" font-weight="500" text-anchor="middle">Qualify</text>
+        <text x="240" y="187" font-family="DM Sans,sans-serif" font-size="10.5" fill="#374151" font-weight="500" text-anchor="middle">&amp; Score</text>
+
+        <!-- ── ROUTE TO REP NODE ── -->
+        <circle cx="385" cy="75" r="25" fill="rgba(0,180,176,0.12)"/>
+        <circle cx="385" cy="75" r="20" fill="#00B4B0"/>
+        <circle cx="385" cy="69" r="5" fill="none" stroke="white" stroke-width="1.6"/>
+        <path d="M375,87 C375,82 379,79 385,79 C391,79 395,82 395,87" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        <text x="385" y="111" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Route to</text>
+        <text x="385" y="123" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Rep</text>
+
+        <!-- ── SEND REPLY NODE ── -->
+        <circle cx="385" cy="197" r="25" fill="rgba(0,180,176,0.12)"/>
+        <circle cx="385" cy="197" r="20" fill="#00B4B0"/>
+        <rect x="376" y="191" width="18" height="13" rx="2" fill="none" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M376,192 L385,199 L394,192" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+        <text x="385" y="233" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Send</text>
+        <text x="385" y="245" font-family="DM Sans,sans-serif" font-size="10" fill="#374151" font-weight="500" text-anchor="middle">Reply</text>
+
+        <!-- ── NURTURE NODE (dimmer) ── -->
+        <circle cx="386" cy="252" r="18" fill="rgba(0,180,176,0.18)" opacity="0.5"/>
+        <circle cx="386" cy="252" r="13" fill="rgba(0,180,176,0.45)" opacity="0.5"/>
+        <path d="M380,249 L392,249 C393.1,249 394,249.9 394,251 L394,257 C394,258.1 393.1,259 392,259 L381,259 L378,262 L378,259 C376.9,259 376,258.1 376,257 L376,251 C376,249.9 376.9,249 378,249z" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.2" stroke-linejoin="round"/>
+
+        <!-- ── SLACK OUTPUT CARD ── -->
+        <rect x="438" y="45" width="178" height="60" rx="9" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+        <text x="454" y="62" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" font-weight="600" letter-spacing="0.8">SLACK — #sales</text>
+        <text x="454" y="78" font-family="DM Sans,sans-serif" font-size="12.5" fill="#111827" font-weight="600">Assigned to Sarah</text>
+        <circle cx="455" cy="93" r="4" fill="#22C55E"/>
+        <text x="464" y="96" font-family="DM Sans,sans-serif" font-size="10.5" fill="#6B7280">Today 3:12pm</text>
+
+        <!-- ── EMAIL OUTPUT CARD ── -->
+        <rect x="438" y="167" width="178" height="60" rx="9" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+        <rect x="449" y="178" width="14" height="10" rx="2" fill="none" stroke="#00B4B0" stroke-width="1.3"/>
+        <path d="M449,179 L456,185 L463,179" fill="none" stroke="#00B4B0" stroke-width="1.3" stroke-linejoin="round"/>
+        <text x="468" y="186" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" font-weight="600" letter-spacing="0.8">EMAIL — Personalized</text>
+        <text x="454" y="202" font-family="DM Sans,sans-serif" font-size="12.5" fill="#111827" font-weight="600">Sent! 1 lead</text>
+        <circle cx="455" cy="217" r="4" fill="#22C55E"/>
+        <text x="464" y="220" font-family="DM Sans,sans-serif" font-size="10.5" fill="#6B7280">Today 3:12pm</text>
+
+        <!-- ── SUBTLE NURTURE LABEL ── -->
+        <text x="386" y="268" font-family="DM Sans,sans-serif" font-size="9" fill="#9CA3AF" text-anchor="middle" opacity="0.6">Nurture Seq.</text>
+
+      </svg>
+
+      <div class="sv-browser-footer">
+        <span class="sv-dot"></span>
+        <span class="sv-dot on"></span>
+        <span class="sv-dot"></span>
+        <span class="sv-dot"></span>
+        <span class="sv-dot"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sv-divider">
+
+<!-- ── SECTION 4: THE PROBLEM ── -->
+<div class="sv-section">
+  <div class="sv-problem-grid fade-up">
+    <div>
+      <span class="sv-label">The Problem</span>
+      <h2 class="sv-heading">By the time you call back,<br>they've moved on.</h2>
+      <p class="sv-body">When someone fills out a form on your website, that moment is the peak of their intent. Research consistently shows contacting a lead within five minutes makes you up to ten times more likely to convert them. And yet the average business takes 47 hours to follow up.</p>
+      <p class="sv-body">By that point, the prospect has already talked to two of your competitors or solved the problem themselves. You didn't lose that lead because your price was wrong. You lost it because you were slow.</p>
+      <div class="sv-pullquote">
         <p>This isn't about working faster. It's about building a system that responds <em>instantly</em> — every single time, for every single lead, without anyone on your team lifting a finger.</p>
       </div>
     </div>
-    <div>
-      <p class="eyebrow fade-up">How it works</p>
-      <h2 class="section-h fade-up" style="margin-bottom: 0;">From form submit<br>to replied — in seconds.</h2>
-      <div class="steps-wide fade-up">
-        <div class="step">
-          <span class="step-n">01</span>
-          <div>
-            <h3>Lead captured</h3>
-            <p>The moment a form is submitted — on your website, a landing page, or a third-party platform — the automation fires. Name, contact info, and any intake fields are captured immediately.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">02</span>
-          <div>
-            <h3>Qualified automatically</h3>
-            <p>The system checks the lead against your criteria — budget, location, service type, or any other filter. Hot leads get priority routing. Unqualified leads get a polite response that doesn't waste your team's time.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">03</span>
-          <div>
-            <h3>Routed to the right person</h3>
-            <p>Based on the lead's profile, it's assigned to the right rep, territory, or department — with a notification that includes everything they need to know before picking up the phone.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">04</span>
-          <div>
-            <h3>Personalized reply sent instantly</h3>
-            <p>While routing happens internally, the prospect receives a personalized message — by email, SMS, or both — that feels human. It acknowledges their inquiry, sets expectations, and keeps them warm until your team connects.</p>
-          </div>
-        </div>
-      </div>
+    <div class="sv-ghost-wrap">
+      <div class="sv-ghost-stat">47hrs</div>
+      <div class="sv-ghost-sub">average response time</div>
     </div>
   </div>
 </div>
 
-<hr class="divider">
+<hr class="sv-divider">
 
-<!-- WHO IT'S FOR -->
-<div class="section">
-  <p class="eyebrow fade-up">Who it's for</p>
-  <h2 class="section-h fade-up">Any business where<br>a slow response costs money.</h2>
-  <p class="section-p fade-up">This works especially well for service businesses where a missed lead or delayed response directly translates to lost revenue — and where the math on what each new client is worth makes the ROI immediate and obvious.</p>
-  <div class="industry-grid fade-up">
-    <span class="industry-pill">Dental clinics</span>
-    <span class="industry-pill">Law firms</span>
-    <span class="industry-pill">Home services</span>
-    <span class="industry-pill">Real estate agents</span>
-    <span class="industry-pill">Marketing agencies</span>
-    <span class="industry-pill">Med spas & aesthetics</span>
-    <span class="industry-pill">Financial advisors</span>
-    <span class="industry-pill">Insurance brokers</span>
-    <span class="industry-pill">Contractors & trades</span>
+<!-- ── SECTION 5: HOW IT WORKS ── -->
+<div class="sv-section fade-up">
+  <span class="sv-label">How It Works</span>
+  <h2 class="sv-heading">From form submit to replied — in seconds.</h2>
+  <div class="sv-timeline">
+    <div class="sv-tl-item">
+      <div class="sv-tl-title">Lead captured</div>
+      <p class="sv-tl-body">The moment a form is submitted — on your website, landing page, or any platform — the automation fires. Name, contact info, and intake fields are captured immediately.</p>
+    </div>
+    <div class="sv-tl-item">
+      <div class="sv-tl-title">Qualified automatically</div>
+      <p class="sv-tl-body">The system checks the lead against your criteria — budget, location, service type. Hot leads get priority routing; unqualified leads get a polite response that doesn't waste your team's time.</p>
+    </div>
+    <div class="sv-tl-item">
+      <div class="sv-tl-title">Routed to the right person</div>
+      <p class="sv-tl-body">Based on the lead's profile, it's assigned to the right rep or territory — with a notification that includes everything they need before picking up the phone.</p>
+    </div>
+    <div class="sv-tl-item">
+      <div class="sv-tl-title">Personalized reply sent instantly</div>
+      <p class="sv-tl-body">While routing happens internally, the prospect receives a personalized message — by email, SMS, or both — that feels human and keeps them warm until your team connects.</p>
+    </div>
   </div>
 </div>
 
-<!-- CTA -->
+<hr class="sv-divider">
+
+<!-- ── SECTION 6: WHO IT'S FOR ── -->
+<div class="sv-section fade-up">
+  <span class="sv-label">Who It's For</span>
+  <h2 class="sv-heading">Any business where a slow<br>response costs money.</h2>
+  <p class="sv-body">Service businesses where a missed lead directly translates to lost revenue — and where the math on each new client makes the ROI immediate and obvious.</p>
+  <div class="sv-pills">
+    <span class="sv-pill">Dental clinics</span>
+    <span class="sv-pill">Law firms</span>
+    <span class="sv-pill">Home services</span>
+    <span class="sv-pill">Real estate agents</span>
+    <span class="sv-pill">Marketing agencies</span>
+    <span class="sv-pill">Med spas &amp; aesthetics</span>
+    <span class="sv-pill">Financial advisors</span>
+    <span class="sv-pill">Insurance brokers</span>
+    <span class="sv-pill">Contractors &amp; trades</span>
+  </div>
+</div>
+
+<!-- ── SECTION 7: CTA ── -->
 <div id="contact" class="cta-wrap">
   <div class="cta-box fade-up">
     <div class="cta-glow"></div>
@@ -153,26 +286,76 @@
 </div>
 
 <footer class="footer">
-  <div class="footer-l">
-    <a class="nav-logo" href="/" style="text-decoration:none; margin-bottom:4px;">
-      <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
-        <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
-        <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
-        <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
-        <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
-        <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
-        <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
-        <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text" style="font-size:18px;">flowbuild</span>
-    </a>
-    <span class="footer-copy">© 2025 flowbuild. All rights reserved.</span>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/" style="text-decoration:none;">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+            <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
+            <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
+            <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
+            <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
+            <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text" style="font-size:19px;">flowbuild</span>
+        </a>
+        <p class="footer-tagline">We build automation systems that help growing businesses move faster — without growing their headcount. Every workflow we build saves time and compounds results.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Services</p>
+          <ul>
+            <li><a href="/services/speed-to-lead.html">Speed to Lead</a></li>
+            <li><a href="/services/follow-up-sequences.html">Follow-up Sequences</a></li>
+            <li><a href="/services/document-processing.html">Document Processing</a></li>
+            <li><a href="/services/database-reactivation.html">Database Reactivation</a></li>
+            <li><a href="/services/custom-integrations.html">Custom Integrations</a></li>
+            <li><a href="/services/reporting-and-alerts.html">Reporting &amp; Alerts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Company</p>
+          <ul>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#process">How it works</a></li>
+            <li><a href="/#results">Results</a></li>
+            <li><a href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Contact</p>
+          <ul>
+            <li><a href="mailto:hello@flowbuild.ca">hello@flowbuild.ca</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 flowbuild. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://x.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="X / Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://instagram.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="mailto:hello@flowbuild.ca" class="footer-social-link" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+      <button class="footer-top-btn" onclick="window.scroll({top:0,behavior:'smooth'})" aria-label="Back to top">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
   </div>
-  <ul class="footer-links">
-    <li><a href="#">Privacy</a></li>
-    <li><a href="#">Terms</a></li>
-    <li><a href="mailto:hello@flowbuild.ca">hello@flowbuild.ca</a></li>
-  </ul>
 </footer>
 
 <script>
