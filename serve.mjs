@@ -24,7 +24,9 @@ const MIME = {
 
 createServer(async (req, res) => {
   let path = req.url.split('?')[0];
-  if (path === '/') path = '/index.html';
+
+  // Normalise trailing-slash paths
+  if (path.endsWith('/')) path = path + 'index.html';
 
   const filePath = join(__dirname, path);
   const ext = extname(filePath);
@@ -34,6 +36,17 @@ createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
     res.end(data);
   } catch {
+    // No extension → redirect to path/ so relative assets resolve correctly
+    if (!ext) {
+      try {
+        const indexPath = join(__dirname, path, 'index.html');
+        await readFile(indexPath); // verify it exists
+        const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+        res.writeHead(301, { Location: path + '/' + qs });
+        res.end();
+        return;
+      } catch {}
+    }
     res.writeHead(404);
     res.end('Not found');
   }

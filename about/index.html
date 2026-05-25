@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — flowbuild</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #00B4B0;
+      --teal-bright: #00CECC;
+      --teal-border: rgba(0,180,176,0.18);
+      --bg: #0D1117;
+      --surface-2: #1A2330;
+      --text: #E6EDF4;
+      --text-dim: #9BAABB;
+      --text-muted: #5A6A7A;
+      --border: rgba(255,255,255,0.055);
+      --border-strong: rgba(255,255,255,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    h1, h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+      font-weight: 300 !important;
+      line-height: 1.05 !important;
+    }
+
+    /* grain */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 56px;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(13,17,23,0.88);
+      backdrop-filter: blur(18px) saturate(1.4);
+      border-color: var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px; font-weight: 500;
+      color: var(--teal); letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 400; letter-spacing: 0.01em;
+      color: var(--text-dim); text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      text-decoration: none; border-radius: 7px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--teal); color: #0D1117;
+      padding: 10px 22px; font-size: 15px;
+    }
+    .btn-primary:hover {
+      background: var(--teal-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(0,180,176,0.32), 0 2px 8px rgba(0,180,176,0.18);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* Resources dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dd-btn {
+      background: none; border: none; cursor: pointer; padding: 0;
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; font-weight: 400; letter-spacing: 0.01em;
+      color: var(--text-dim); transition: color 0.2s ease;
+    }
+    .nav-dd-btn:hover { color: var(--text); }
+    .nav-dd-btn svg { transition: transform 0.22s ease; }
+    .nav-dropdown:hover .nav-dd-btn svg,
+    .nav-dropdown.open .nav-dd-btn svg { transform: rotate(180deg); }
+    .nav-dd-menu {
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      padding-top: 18px; width: 230px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 200;
+    }
+    .nav-dd-menu-inner {
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px; padding: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .nav-dropdown:hover .nav-dd-menu,
+    .nav-dropdown.open .nav-dd-menu {
+      opacity: 1; pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dd-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 12px; border-radius: 10px;
+      text-decoration: none; transition: background 0.15s ease;
+    }
+    .nav-dd-item:hover { background: rgba(255,255,255,0.05); }
+    .nav-dd-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(0,180,176,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal); flex-shrink: 0;
+    }
+    .nav-dd-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.2; }
+    .nav-dd-desc { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; }
+
+    /* ── LAYOUT ── */
+    .page-spacer { height: var(--nav-h, 88px); }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 56px;
+    }
+
+    .section-divider {
+      border: none; height: 1px;
+      background: var(--border);
+      margin: 0 56px;
+    }
+
+    .eyebrow {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* ── S1: HERO ── */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-text { display: flex; flex-direction: column; gap: 24px; }
+    .hero-h1 {
+      font-size: clamp(32px, 3.2vw, 40px) !important;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      max-width: 560px;
+    }
+    .hero-p {
+      font-size: 16px; line-height: 1.7;
+      color: #9CA3AF; max-width: 480px;
+    }
+    .hero-photo-wrap {
+      display: flex; align-items: center; justify-content: flex-end;
+    }
+    .hero-photo-placeholder {
+      width: 100%; max-width: 360px;
+      aspect-ratio: 3 / 4;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(0,180,176,0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      font-size: 13px; letter-spacing: 0.08em;
+    }
+
+    /* ── S2: BACKSTORY ── */
+    .backstory-section { padding-top: 64px; padding-bottom: 64px; }
+    .backstory-wrap {
+      max-width: 640px; margin: 0 auto; text-align: center;
+    }
+    .backstory-wrap .eyebrow { margin-bottom: 28px; display: block; }
+    .backstory-copy {
+      font-size: 16px; line-height: 1.8; color: #9CA3AF; text-align: left;
+    }
+    .backstory-copy p + p { margin-top: 22px; }
+
+    /* ── S3: WHY FLOWBUILD ── */
+    .why-head { text-align: center; margin-bottom: 48px; }
+    .why-head .eyebrow { margin-bottom: 14px; display: block; }
+    .why-h2 {
+      font-size: clamp(26px, 2.8vw, 32px) !important;
+      letter-spacing: -0.02em; color: var(--text);
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0,180,176,0.1);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .card:hover {
+      border-color: rgba(0,180,176,0.25);
+      background: rgba(255,255,255,0.045);
+    }
+    .card-icon { color: var(--teal); }
+    .card-icon svg { display: block; }
+    .card-title {
+      font-size: 17px; font-weight: 600;
+      color: var(--text); line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .card-desc { font-size: 13.5px; line-height: 1.65; color: #9CA3AF; }
+
+    /* ── S4: LOCATIONS ── */
+    .locations-section { padding-top: 64px; padding-bottom: 64px; }
+    .locations-wrap {
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .locations-wrap .eyebrow { margin-bottom: 6px; display: block; }
+    .locations-list {
+      font-size: 18px; font-weight: 400;
+      letter-spacing: 0.02em; color: var(--text);
+    }
+    .loc-dot { color: var(--text-muted); margin: 0 14px; opacity: 0.5; }
+    .locations-sub { font-size: 14px; color: #9CA3AF; }
+
+    /* ── S5: CTA ── */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(0,180,176,0.07) 0%, rgba(0,180,176,0.02) 100%);
+      border: 1px solid rgba(0,180,176,0.14);
+      border-radius: 24px;
+      padding: 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .cta-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 280px; pointer-events: none;
+      background: radial-gradient(ellipse, rgba(0,180,176,0.1) 0%, transparent 65%);
+    }
+    .cta-box .eyebrow { position: relative; margin-bottom: 4px; }
+    .cta-h2 {
+      font-size: clamp(26px, 2.8vw, 32px) !important;
+      letter-spacing: -0.025em;
+      color: var(--text); max-width: 540px;
+      position: relative;
+    }
+    .cta-sub {
+      font-size: 15px; line-height: 1.65;
+      color: #9CA3AF; max-width: 440px;
+      position: relative;
+    }
+    .btn-cta {
+      padding: 14px 30px; font-size: 15px; position: relative;
+    }
+    .cta-note {
+      font-size: 12px; color: var(--text-muted); opacity: 0.55;
+      position: relative;
+    }
+
+    /* ── FOOTER ── */
+    .footer { border-top: 1px solid var(--border); }
+    .footer-inner {
+      max-width: 1240px; margin: 0 auto;
+      padding: 72px 56px 44px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 80px; align-items: start; padding-bottom: 56px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 18px; }
+    .footer-tagline {
+      font-size: 13.5px; line-height: 1.78;
+      color: var(--text-muted); max-width: 360px;
+    }
+    .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .footer-col-head {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col a {
+      font-size: 13.5px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--text); }
+    .footer-rule { height: 1px; background: var(--border); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 32px;
+    }
+    .footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.5; }
+    .footer-social { display: flex; align-items: center; gap: 6px; }
+    .footer-social-link {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px dotted var(--border-strong);
+      color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-social-link:hover { color: var(--teal); border-color: var(--teal-border); transform: translateY(-2px); }
+    .footer-top-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px dotted var(--border-strong);
+      background: none; color: var(--text-muted); cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-top-btn:hover { color: var(--teal); border-color: var(--teal-border); transform: translateY(-2px); }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .anim {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim.in { opacity: 1; transform: translateY(0); }
+    .anim-d1 { transition-delay: 0.08s; }
+    .anim-d2 { transition-delay: 0.16s; }
+    .anim-d3 { transition-delay: 0.24s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .section { padding: 48px 24px; }
+      .section-divider { margin: 0 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo-wrap { justify-content: flex-start; }
+      .hero-photo-placeholder { max-width: 100%; aspect-ratio: 4/3; }
+      .backstory-section { padding-top: 48px; padding-bottom: 48px; }
+      .locations-section { padding-top: 48px; padding-bottom: 48px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-box { padding: 56px 32px; }
+      .footer-inner { padding: 56px 24px 36px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 48px; }
+      .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .footer-bottom { flex-wrap: wrap; gap: 20px; justify-content: center; }
+    }
+    @media (max-width: 560px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .locations-list { font-size: 15px; }
+      .loc-dot { margin: 0 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a class="nav-logo" href="/">
+    <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+      <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
+      <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
+      <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
+      <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
+      <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+      <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+      <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">flowbuild</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/services">Services</a></li>
+    <li><a href="/#process">How it works</a></li>
+    <li><a href="/#results">Results</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dd-btn" aria-haspopup="true" aria-expanded="false">
+        Resources
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dd-menu" role="menu">
+        <div class="nav-dd-menu-inner">
+          <a class="nav-dd-item" href="/about" role="menuitem">
+            <div class="nav-dd-icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div>
+              <div class="nav-dd-title">About</div>
+              <div class="nav-dd-desc">Who we are</div>
+            </div>
+          </a>
+          <a class="nav-dd-item" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener" role="menuitem">
+            <div class="nav-dd-icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div>
+              <div class="nav-dd-title">Contact</div>
+              <div class="nav-dd-desc">Talk to us</div>
+            </div>
+          </a>
+          <a class="nav-dd-item" href="#" role="menuitem">
+            <div class="nav-dd-icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div>
+              <div class="nav-dd-title">Blog</div>
+              <div class="nav-dd-desc">Tips &amp; insights</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <a class="btn btn-primary" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">
+    Book a free call
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</nav>
+
+<div class="page-spacer"></div>
+
+<!-- ══════════════════════════════════════════
+     S1 — HERO
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="hero-grid">
+    <div class="hero-text anim">
+      <p class="eyebrow">About Flowbuild</p>
+      <h1 class="hero-h1">Built by someone who'd rather automate it than do it twice.</h1>
+      <p class="hero-p">Flowbuild is a business automation agency based in Canada and Mexico. We design and build custom AI workflows that handle the repetitive work — so you and your team can focus on what actually moves the needle.</p>
+    </div>
+    <div class="hero-photo-wrap anim anim-d1">
+      <div class="hero-photo-placeholder">Photo</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════
+     S2 — THE SHORT VERSION
+══════════════════════════════════════════ -->
+<section class="section backstory-section anim">
+  <div class="backstory-wrap">
+    <span class="eyebrow">The Short Version</span>
+    <div class="backstory-copy">
+      <p>I started my first company in university — a Spanish-language wellness app called Despertar. We grew it to thousands of users, ran content across every platform, and learned firsthand what happens when a growing business runs on manual processes. Every hour spent copying data, sending follow-ups by hand, and updating spreadsheets was an hour not spent on the product.</p>
+      <p>So I started automating everything. Lead responses, reporting, content pipelines, onboarding flows — anything that ran on repetition, I replaced with a system. The results were immediate. And that's when I realized other businesses needed the same thing.</p>
+      <p>Flowbuild is the company I wished existed when I was drowning in manual work.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════
+     S3 — WHY FLOWBUILD
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="why-head anim">
+    <span class="eyebrow">Why Flowbuild</span>
+    <h2 class="why-h2">Not your typical automation agency.</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card anim">
+      <div class="card-icon">
+        <i data-lucide="code-2" style="width:24px;height:24px;stroke-width:1.6;fill:none;"></i>
+      </div>
+      <div class="card-title">Open-source first</div>
+      <div class="card-desc">We build on n8n and open platforms. You own your automations — no vendor lock-in, no monthly platform fees eating your margins.</div>
+    </div>
+    <div class="card anim anim-d1">
+      <div class="card-icon">
+        <i data-lucide="globe" style="width:24px;height:24px;stroke-width:1.6;fill:none;"></i>
+      </div>
+      <div class="card-title">Bilingual by default</div>
+      <div class="card-desc">We work in English and Spanish. If your business serves Latin American markets or has a Spanish-speaking team, we build for that from day one.</div>
+    </div>
+    <div class="card anim anim-d2">
+      <div class="card-icon">
+        <i data-lucide="shield" style="width:24px;height:24px;stroke-width:1.6;fill:none;"></i>
+      </div>
+      <div class="card-title">30 days of monitoring</div>
+      <div class="card-desc">Every automation we launch includes 30 days of active monitoring. If something breaks, we fix it — included in the price, no support tickets.</div>
+    </div>
+    <div class="card anim anim-d3">
+      <div class="card-icon">
+        <i data-lucide="user" style="width:24px;height:24px;stroke-width:1.6;fill:none;"></i>
+      </div>
+      <div class="card-title">You talk to the builder</div>
+      <div class="card-desc">No account managers, no handoffs. The person on your discovery call is the same person who builds and deploys your automations.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════
+     S4 — WHERE WE WORK
+══════════════════════════════════════════ -->
+<section class="section locations-section anim">
+  <div class="locations-wrap">
+    <span class="eyebrow">Where We Work</span>
+    <p class="locations-list">
+      London, ON<span class="loc-dot">·</span>Toronto, ON<span class="loc-dot">·</span>Vancouver, BC<span class="loc-dot">·</span>Guadalajara, MX
+    </p>
+    <p class="locations-sub">Remote-first. We work with clients across North America.</p>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════
+     S5 — CTA
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="cta-box anim">
+    <div class="cta-glow"></div>
+    <span class="eyebrow">Ready to start?</span>
+    <h2 class="cta-h2">Let's talk about what's slowing your business down.</h2>
+    <p class="cta-sub">Book a free 30-minute call. No pitch deck, no pressure — just an honest look at what could be automated.</p>
+    <a class="btn btn-primary btn-cta"
+       href="https://cal.com/flowbuild/free-automation-audit"
+       data-cal-link="flowbuild/free-automation-audit"
+       data-cal-origin="https://cal.com"
+       target="_blank" rel="noopener">
+      Book a free call
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="cta-note">No commitment required.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/" style="text-decoration:none;">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+            <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
+            <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
+            <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
+            <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
+            <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text" style="font-size:19px;">flowbuild</span>
+        </a>
+        <p class="footer-tagline">We build automation systems that help growing businesses move faster — without growing their headcount. Every workflow we build saves time and compounds results.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Services</p>
+          <ul>
+            <li><a href="/services/#speed-to-lead">Speed to Lead</a></li>
+            <li><a href="/services/#follow-up-sequences">Follow-up Sequences</a></li>
+            <li><a href="/services/#document-processing">Document Processing</a></li>
+            <li><a href="/services/#database-reactivation">Database Reactivation</a></li>
+            <li><a href="/services/#custom-integrations">Custom Integrations</a></li>
+            <li><a href="/services/#reporting-alerts">Reporting &amp; Alerts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Company</p>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#process">How it works</a></li>
+            <li><a href="/#results">Results</a></li>
+            <li><a href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Contact</p>
+          <ul>
+            <li><a href="mailto:hello@flowbuild.ca">hello@flowbuild.ca</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 flowbuild. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://x.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="X / Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://instagram.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="mailto:hello@flowbuild.ca" class="footer-social-link" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+      <button class="footer-top-btn" onclick="window.scroll({top:0,behavior:'smooth'})" aria-label="Back to top">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<!-- Cal.com popup -->
+<script>
+(function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,ar[2]])}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+Cal("init",{origin:"https://cal.com"});
+Cal("ui",{"styles":{"branding":{"brandColor":"#00B4B0"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script>
+lucide.createIcons();
+
+/* Nav scroll */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+/* Sync spacer to nav height */
+function syncNavHeight() {
+  document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+}
+new ResizeObserver(syncNavHeight).observe(navEl);
+syncNavHeight();
+
+/* Resources dropdown */
+document.querySelectorAll('.nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.nav-dd-btn');
+  btn.addEventListener('click', () => {
+    const open = dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', e => {
+    if (!dd.contains(e.target)) {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
+/* Scroll animations */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.anim').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

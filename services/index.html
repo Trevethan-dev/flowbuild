@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — flowbuild</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── Nav active state ── */
+    .nav-links a.active-page { color: var(--text); }
+
+    /* ══════════════════════════════════════════════
+       FIXED HEADER WRAPPER — contains nav + bar
+    ══════════════════════════════════════════════ */
+    #site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+    }
+
+    /* Override style.css nav fixed positioning — handled by wrapper */
+    #site-header > nav {
+      position: static;
+      z-index: auto;
+    }
+
+    .page-spacer { height: var(--header-h, 144px); }
+
+    .svc-bar {
+      position: static;
+      height: 56px;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(14px) saturate(1.6);
+      -webkit-backdrop-filter: blur(14px) saturate(1.6);
+      border-bottom: 1px solid rgba(0,180,176,0.1);
+    }
+
+    .svc-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+      gap: 4px;
+    }
+
+    .svc-tab {
+      display: flex;
+      flex-direction: row;       /* icon + label side by side */
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #6B7280;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .svc-tab [data-lucide] { width: 16px; height: 16px; flex-shrink: 0; }
+    .svc-tab span { line-height: 1; }
+
+    .svc-tab.active {
+      color: var(--teal);
+      background: rgba(0,180,176,0.1);
+    }
+
+    .svc-tab:not(.active):hover {
+      color: #9CA3AF;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .svc-tab:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .svc-tab:active { opacity: 0.75; }
+
+    /* ══════════════════════════════════════════════
+       PANEL VISIBILITY
+    ══════════════════════════════════════════════ */
+    .svc-content { position: relative; }
+
+    .svc-panel {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    .svc-panel.visible  { display: block; }
+    .svc-panel.faded-in { opacity: 1; }
+
+    /* ══════════════════════════════════════════════
+       BLOCK WRAPPER
+    ══════════════════════════════════════════════ */
+    .svc-block {
+      padding: 64px 56px;
+      position: relative;
+    }
+    /* Hero block gets less bottom padding so stats sit tighter */
+    .svc-block-hero { padding-bottom: 32px; }
+
+    /* Ambient glow — first block only */
+    .svc-glow {
+      position: absolute;
+      top: -40px; right: -60px;
+      width: 640px; height: 520px;
+      background: radial-gradient(ellipse at 70% 20%, rgba(0,180,176,0.06) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       TWO-COLUMN GRID
+    ══════════════════════════════════════════════ */
+    .svc-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;           /* vertically center both columns */
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Reverse: swap columns on desktop via order */
+    .svc-two-col.rev .svc-col-text   { order: 2; }
+    .svc-two-col.rev .svc-col-visual { order: 1; }
+
+    .svc-col-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .svc-col-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Typography ── */
+    .svc-eyebrow {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .svc-h1 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 42px !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .svc-h2 {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 30px !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .svc-h1 em, .svc-h2 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .svc-rule {
+      width: 40px; height: 1px;
+      background: var(--teal); opacity: 0.3;
+    }
+
+    .svc-copy {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-dim);
+    }
+    .svc-copy p + p { margin-top: 13px; }
+
+    /* ── CTA button ── */
+    .btn-svc {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: #0D1117;
+      padding: 11px 24px;
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.2s ease,
+                  transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.2s ease;
+    }
+    .btn-svc:hover {
+      background: var(--teal-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,180,176,0.32);
+    }
+    .btn-svc:active  { transform: translateY(0); box-shadow: none; }
+    .btn-svc:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+    .btn-svc svg { width: 13px; height: 13px; transition: transform 0.18s ease; }
+    .btn-svc:hover svg { transform: translateX(3px); }
+
+    /* ── Infographic image ── */
+    .svc-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow:
+        0 28px 70px rgba(0,0,0,0.58),
+        0 8px 24px rgba(0,0,0,0.32),
+        0 0 0 1px rgba(0,180,176,0.08);
+    }
+    .svc-img-dim {
+      opacity: 0.82;
+      transform: scale(0.93);
+      transform-origin: center;
+    }
+
+    /* ══════════════════════════════════════════════
+       STATS BAR
+    ══════════════════════════════════════════════ */
+    .svc-stats-wrap {
+      padding: 0 56px 48px;
+    }
+    .svc-stats-card {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: var(--surface);
+      border: 1px solid rgba(0,180,176,0.14);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .svc-stat {
+      padding: 32px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      position: relative;
+    }
+    .svc-stat + .svc-stat::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; height: 60%;
+      width: 1px;
+      background: rgba(0,180,176,0.14);
+    }
+    .svc-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .svc-stat-lbl {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.4;
+      max-width: 160px;
+    }
+
+    /* ══════════════════════════════════════════════
+       PROBLEM BLOCK — watermark approach
+    ══════════════════════════════════════════════ */
+    .svc-problem-block {
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+    }
+    .svc-watermark {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 200px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--teal);
+      opacity: 0.07;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+    .svc-problem-inner {
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* ══════════════════════════════════════════════
+       TIMELINE
+    ══════════════════════════════════════════════ */
+    .svc-timeline {
+      display: flex;
+      flex-direction: column;
+      margin-top: 8px;
+    }
+    .svc-step {
+      display: flex;
+      gap: 16px;
+    }
+    .svc-step-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 16px;
+    }
+    .svc-step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .svc-step-line {
+      width: 1px;
+      flex: 1;
+      background: rgba(0,180,176,0.2);
+      margin: 5px 0 0;
+      min-height: 20px;
+    }
+    .svc-step:last-child .svc-step-line { display: none; }
+    .svc-step-body { padding-bottom: 22px; flex: 1; }
+    .svc-step-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .svc-step-desc {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════════
+       PILLS — unified teal style
+    ══════════════════════════════════════════════ */
+    .svc-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      align-content: flex-start;
+    }
+    .svc-pill {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 7px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(0,180,176,0.25);
+      color: var(--teal);
+      background: rgba(0,180,176,0.05);
+      white-space: nowrap;
+      line-height: 1;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .svc-pill:hover {
+      background: rgba(0,180,176,0.1);
+      border-color: rgba(0,180,176,0.4);
+    }
+
+    /* ══════════════════════════════════════════════
+       CTA BLOCK
+    ══════════════════════════════════════════════ */
+    .svc-cta-block {
+      padding: 48px 56px 64px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+    }
+    .svc-cta-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(0,180,176,0.28));
+    }
+    .svc-cta-h {
+      font-family: 'Cormorant Garamond', serif !important;
+      font-weight: 300 !important;
+      font-size: 34px !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 560px;
+    }
+    .svc-cta-sub {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      max-width: 460px;
+    }
+
+    /* ══════════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ══════════════════════════════════════════════ */
+    .anim {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease,
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim.in { opacity: 1; transform: translateY(0); }
+    .anim-d1 { transition-delay: 0.08s; }
+    .anim-d2 { transition-delay: 0.16s; }
+    .anim-d3 { transition-delay: 0.24s; }
+
+    /* ══════════════════════════════════════════════
+       MOBILE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 767px) {
+      /* Bar: horizontally scrollable */
+      /* page-spacer height is set dynamically via --header-h */
+      .svc-bar-inner {
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-snap-type: x proximity;
+        max-width: none;
+        padding: 0 12px;
+        gap: 2px;
+      }
+      .svc-bar-inner::-webkit-scrollbar { display: none; }
+      .svc-tab {
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        padding: 7px 12px;
+        font-size: 12px;
+      }
+      .svc-tab [data-lucide] { width: 15px; height: 15px; }
+
+      /* Blocks */
+      .svc-block { padding: 40px 20px; }
+      .svc-block-hero { padding-bottom: 24px; }
+      .svc-stats-wrap { padding: 0 20px 32px; }
+      .svc-cta-block { padding: 36px 20px 52px; }
+
+      /* Columns stack */
+      .svc-two-col {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      /* Text always on top, visual always below */
+      .svc-col-text   { order: 1 !important; }
+      .svc-col-visual { order: 2 !important; }
+
+      /* Stats stack */
+      .svc-stats-card { grid-template-columns: 1fr; }
+      .svc-stat + .svc-stat::before {
+        top: 0; left: 20%; height: 1px; width: 60%;
+      }
+      .svc-stat { padding: 24px 20px; }
+
+      /* Watermark — scale down */
+      .svc-watermark { font-size: 96px; }
+
+      /* Typography */
+      .svc-h1 { font-size: 32px !important; }
+      .svc-h2 { font-size: 24px !important; }
+      .svc-cta-h { font-size: 28px !important; }
+
+      /* Image */
+      .svc-img-dim { transform: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── FIXED HEADER WRAPPER (nav + toggle bar stacked as one unit) ─── -->
+<div id="site-header">
+<nav id="nav">
+  <a class="nav-logo" href="/">
+    <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+      <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
+      <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
+      <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
+      <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
+      <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+      <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+      <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">flowbuild</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/services" class="active-page">Services</a></li>
+    <li><a href="/#process">How it works</a></li>
+    <li><a href="/#results">Results</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dd-btn" aria-haspopup="true" aria-expanded="false">
+        Resources
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dd-menu" role="menu">
+        <div class="nav-dd-menu-inner">
+          <a class="nav-dd-item" href="#" role="menuitem">
+            <div class="nav-dd-icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div>
+              <div class="nav-dd-title">About</div>
+              <div class="nav-dd-desc">Who we are</div>
+            </div>
+          </a>
+          <a class="nav-dd-item" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener" role="menuitem">
+            <div class="nav-dd-icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div>
+              <div class="nav-dd-title">Contact</div>
+              <div class="nav-dd-desc">Talk to us</div>
+            </div>
+          </a>
+          <a class="nav-dd-item" href="#" role="menuitem">
+            <div class="nav-dd-icon">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div>
+              <div class="nav-dd-title">Blog</div>
+              <div class="nav-dd-desc">Tips &amp; insights</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <a class="btn btn-primary" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">
+    Book a free call
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</nav>
+
+<!-- ─── TOGGLE BAR ─── -->
+<div class="svc-bar" id="svc-bar" role="tablist" aria-label="Services">
+  <div class="svc-bar-inner" id="bar-inner"></div>
+</div>
+</div><!-- end #site-header -->
+
+<div class="page-spacer"></div>
+<div class="svc-content" id="svc-content"></div>
+
+<footer class="footer" id="site-footer" style="display:none;">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/" style="text-decoration:none;">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+            <circle cx="7"  cy="30" r="5" fill="#00B4B0"/>
+            <circle cx="17" cy="20" r="5" fill="#00B4B0"/>
+            <circle cx="28" cy="26" r="5" fill="#00B4B0"/>
+            <circle cx="34" cy="10" r="5" fill="#00B4B0"/>
+            <line x1="11.5" y1="27" x2="13"  y2="23"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21.5" y1="22" x2="24"  y2="24"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="31"   y1="22" x2="32"  y2="14"  stroke="#00B4B0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text" style="font-size:19px;">flowbuild</span>
+        </a>
+        <p class="footer-tagline">We build automation systems that help growing businesses move faster — without growing their headcount.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Services</p>
+          <ul>
+            <li><a href="/services/#speed-to-lead">Speed to Lead</a></li>
+            <li><a href="/services/#follow-up-sequences">Follow-up Sequences</a></li>
+            <li><a href="/services/#document-processing">Document Processing</a></li>
+            <li><a href="/services/#database-reactivation">Database Reactivation</a></li>
+            <li><a href="/services/#custom-integrations">Custom Integrations</a></li>
+            <li><a href="/services/#reporting-alerts">Reporting &amp; Alerts</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Company</p>
+          <ul>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#process">How it works</a></li>
+            <li><a href="/#results">Results</a></li>
+            <li><a href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Contact</p>
+          <ul>
+            <li><a href="mailto:hello@flowbuild.ca">hello@flowbuild.ca</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-rule"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 flowbuild. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://x.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="X / Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="mailto:hello@flowbuild.ca" class="footer-social-link" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+      <button class="footer-top-btn" onclick="window.scroll({top:0,behavior:'smooth'})" aria-label="Back to top">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 11V3M3 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<!-- Cal.com popup -->
+<script>
+(function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,ar[2]])}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+Cal("init",{origin:"https://cal.com"});
+Cal("ui",{"styles":{"branding":{"brandColor":"#00B4B0"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   SERVICE DATA
+═══════════════════════════════════════════════════════ */
+const SERVICES = [
+  {
+    slug: 'speed-to-lead',
+    label: 'Speed to Lead',
+    icon: 'zap',
+    image: '../brand_assets/infographics/speed-to-lead.png',
+    hero: {
+      heading: 'Speed to <em>Lead.</em>',
+      subtitle: 'The first business to respond wins. We make sure that\'s always you — with personalized replies in under 60 seconds, 24/7.',
+    },
+    stats: [
+      { val: '10x',     lbl: 'more conversions with sub-60s response' },
+      { val: '47 hrs',  lbl: 'average business response time' },
+      { val: '<90 sec', lbl: 'your response time with us' },
+    ],
+    problem: {
+      watermark: '47 hrs',
+      heading: 'By the time you call back, they\'ve moved on.',
+      copy: [
+        'When someone fills out a form on your website, that moment of interest is the peak of their intent. They are ready to buy right now. Research shows that contacting a lead within five minutes makes you ten times more likely to convert them.',
+        'Yet the average business takes 47 hours to follow up. By then, the prospect has already talked to two of your competitors.',
+      ],
+    },
+    howItWorks: {
+      heading: 'From form submit to replied — in seconds.',
+      steps: [
+        { title: 'Lead captured',              desc: 'A form is submitted and all details are captured instantly.' },
+        { title: 'Qualified automatically',    desc: 'The system checks the lead against your criteria and routes accordingly.' },
+        { title: 'Routed to the right person', desc: 'Assigned to the right rep with full context, directly in Slack or your CRM.' },
+        { title: 'Personalized reply sent',    desc: 'The prospect receives a tailored message by email or SMS within 90 seconds.' },
+      ],
+    },
+    whoItsFor: {
+      heading: 'Any business where a slow response costs money.',
+      copy: 'This works especially well for service businesses where a missed lead or delayed response directly translates to lost revenue — and where the math on what each new client is worth makes the ROI immediate.',
+      tags: ['Dental clinics','Law firms','Home services','Real estate agencies','Marketing agencies','Med spas','Financial advisors','Insurance brokers','Contractors'],
+    },
+    cta: {
+      heading: 'Ready to automate your lead response?',
+      subtitle: 'Book a free 30-minute call. We\'ll look at your current lead flow and show you exactly where time and revenue are being lost.',
+    },
+  },
+  {
+    slug: 'document-processing',
+    label: 'Document Processing',
+    icon: 'file-text',
+    image: '../brand_assets/infographics/document-processing.png',
+    hero: {
+      heading: 'Document <em>Processing.</em>',
+      subtitle: 'Your team shouldn\'t spend hours moving data between systems. We build automations that extract, organize, and route information automatically.',
+    },
+    stats: [
+      { val: '80%',     lbl: 'reduction in manual data entry' },
+      { val: '3 hrs',   lbl: 'average time saved per employee per day' },
+      { val: '< 5 min', lbl: 'to process a document end-to-end' },
+    ],
+    problem: {
+      watermark: '3 hrs',
+      heading: 'Manual data entry is killing your team\'s productivity.',
+      copy: [
+        'Every hour your team spends copying information between systems is an hour not spent on work that grows your business. Invoices, contracts, intake forms — the same information gets re-entered three times before it lands where it needs to be.',
+        'Errors compound. Bottlenecks form. And the cost is invisible until it isn\'t.',
+      ],
+    },
+    howItWorks: {
+      heading: 'Documents in, structured data out.',
+      steps: [
+        { title: 'Document received',    desc: 'Email attachment, upload, or scan — the workflow catches it automatically.' },
+        { title: 'Data extracted',       desc: 'AI reads the document and pulls the relevant fields — no templates required.' },
+        { title: 'Validated and routed', desc: 'Checks for errors, flags exceptions, and sends to the right system.' },
+        { title: 'Confirmation sent',    desc: 'The relevant person gets a summary and any action items, instantly.' },
+      ],
+    },
+    whoItsFor: {
+      heading: 'Any team that processes the same type of document repeatedly.',
+      copy: 'If your team handles invoices, contracts, applications, or intake forms on a regular basis, this automation pays for itself within weeks.',
+      tags: ['Accounting firms','Legal practices','Healthcare clinics','Property managers','Logistics companies','HR departments','Insurance offices','Mortgage brokers'],
+    },
+    cta: {
+      heading: 'Ready to eliminate manual document work?',
+      subtitle: 'Book a free 30-minute call. We\'ll map your current document flow and show you exactly what can be automated.',
+    },
+  },
+  {
+    slug: 'follow-up-sequences',
+    label: 'Follow-up Sequences',
+    icon: 'refresh-cw',
+    image: '../brand_assets/infographics/follow-up-sequences.png',
+    hero: {
+      heading: 'Follow-up <em>Sequences.</em>',
+      subtitle: 'Most leads are lost because nobody follows up at the right time. We build sequences that keep your business front of mind — automatically.',
+    },
+    stats: [
+      { val: '80%', lbl: 'of sales require 5+ follow-up touches' },
+      { val: '44%', lbl: 'of salespeople give up after one follow-up' },
+      { val: '9x',  lbl: 'higher reply rate with personalized sequences' },
+    ],
+    problem: {
+      watermark: '44%',
+      heading: 'Your leads aren\'t gone — you just stopped reaching out.',
+      copy: [
+        'Most prospects don\'t convert on the first touch. They\'re busy, they got distracted, they\'re still comparing options. A well-timed follow-up is often all it takes to bring them back.',
+        'But manual follow-ups are easy to forget and inconsistent. The leads fall through the cracks — and walk straight to a competitor who stayed in touch.',
+      ],
+    },
+    howItWorks: {
+      heading: 'The right message, to the right lead, at the right time.',
+      steps: [
+        { title: 'Trigger set',            desc: 'Sequence starts when a lead fills a form, books, or reaches a specific stage in your CRM.' },
+        { title: 'Personalized messages',  desc: 'Each message is tailored to the lead\'s name, service interest, and where they are in the journey.' },
+        { title: 'Multi-channel delivery', desc: 'Sent by email, SMS, or both — whichever channel gets the best response for your audience.' },
+        { title: 'Automatic stop',         desc: 'The sequence pauses the moment someone replies or books, so nothing feels robotic.' },
+      ],
+    },
+    whoItsFor: {
+      heading: 'Any business with a sales cycle longer than one conversation.',
+      copy: 'If your leads need time to decide, or if your team regularly loses track of who to follow up with and when, this is the automation that fixes it.',
+      tags: ['Real estate','Financial planners','Coaching practices','Med spas','Marketing agencies','Contractors','Recruitment firms','Law firms'],
+    },
+    cta: {
+      heading: 'Ready to stop losing leads to silence?',
+      subtitle: 'Book a free 30-minute call. We\'ll look at your current follow-up process and show you where leads are slipping through.',
+    },
+  },
+  {
+    slug: 'database-reactivation',
+    label: 'Database Reactivation',
+    icon: 'database',
+    image: '../brand_assets/infographics/database-reactivation.png',
+    hero: {
+      heading: 'Database <em>Reactivation.</em>',
+      subtitle: 'You\'re sitting on a goldmine of past leads and clients who already trust you. We build the campaigns that bring them back.',
+    },
+    stats: [
+      { val: '5x',     lbl: 'cheaper to reactivate a past client than acquire a new one' },
+      { val: '60–70%', lbl: 'chance of selling to an existing customer' },
+      { val: '5–20%',  lbl: 'chance of selling to a new prospect' },
+    ],
+    problem: {
+      watermark: '5x',
+      heading: 'Your best leads are already in your CRM — ignored.',
+      copy: [
+        'Every business accumulates years of contacts — leads who never converted, past clients who went quiet, prospects who said "not right now." That database is an asset most businesses completely ignore.',
+        'A targeted reactivation campaign, sent at the right moment with the right message, routinely generates revenue within days.',
+      ],
+    },
+    howItWorks: {
+      heading: 'Turn a dormant list into active revenue.',
+      steps: [
+        { title: 'List audit',        desc: 'We pull and segment your existing contacts by how they came in and where they dropped off.' },
+        { title: 'Message crafted',   desc: 'Each segment gets a message written specifically for where they are in their journey.' },
+        { title: 'Campaign launched', desc: 'Sent via email or SMS, with timing optimized for your industry and audience.' },
+        { title: 'Replies handled',   desc: 'Interested contacts are routed to your team or booked directly into your calendar.' },
+      ],
+    },
+    whoItsFor: {
+      heading: 'Any business with a list of contacts they\'ve stopped talking to.',
+      copy: 'If you have more than a few hundred past leads or clients sitting in a CRM, spreadsheet, or email list, a reactivation campaign will almost always find revenue immediately.',
+      tags: ['Dental clinics','Med spas','Real estate agents','Home services','Financial advisors','Coaching practices','Marketing agencies','Law firms','Insurance brokers'],
+    },
+    cta: {
+      heading: 'Ready to unlock the value in your existing list?',
+      subtitle: 'Book a free 30-minute call. We\'ll look at your database and show you how much revenue is sitting dormant.',
+    },
+  },
+  {
+    slug: 'reporting-alerts',
+    label: 'Reporting & Alerts',
+    icon: 'bar-chart-3',
+    image: '../brand_assets/infographics/reporting-and-alerts.png',
+    hero: {
+      heading: 'Reporting <em>&amp; Alerts.</em>',
+      subtitle: 'Know what\'s happening across your business without checking five different tools. Real-time dashboards and alerts, built for the way you work.',
+    },
+    stats: [
+      { val: '4 hrs',  lbl: 'average time per week lost to manual reporting' },
+      { val: '< 60s',  lbl: 'to get alerted when something needs attention' },
+      { val: '1 view', lbl: 'for all your key metrics, in one place' },
+    ],
+    problem: {
+      watermark: '4 hrs',
+      heading: 'You\'re making decisions based on data that\'s already out of date.',
+      copy: [
+        'Most businesses run on gut feel and week-old spreadsheets. The information exists — it\'s just scattered across your CRM, your inbox, your booking system, and a dozen other tools nobody checks together.',
+        'By the time a report lands on your desk, the moment to act has already passed.',
+      ],
+    },
+    howItWorks: {
+      heading: 'Every number you care about, surfaced automatically.',
+      steps: [
+        { title: 'Sources connected', desc: 'We pull data from your CRM, booking system, email, ads, and any other tools you use.' },
+        { title: 'Metrics defined',   desc: 'You tell us what matters — leads, revenue, response times, bookings — we track all of it.' },
+        { title: 'Dashboard built',   desc: 'A single view that updates in real time, accessible on any device.' },
+        { title: 'Alerts configured', desc: 'Get notified in Slack or by SMS the moment a metric goes out of range.' },
+      ],
+    },
+    whoItsFor: {
+      heading: 'Any business owner tired of flying blind.',
+      copy: 'If you\'re running a team and don\'t have a clear view of performance in real time, this is the system that changes that — without hiring a data analyst.',
+      tags: ['Agencies','E-commerce','Medical practices','Law firms','Franchise owners','Sales teams','Property managers','Financial advisors'],
+    },
+    cta: {
+      heading: 'Ready to see your business clearly?',
+      subtitle: 'Book a free 30-minute call. We\'ll look at your current tools and show you what a real-time reporting setup could look like for you.',
+    },
+  },
+  {
+    slug: 'custom-integrations',
+    label: 'Custom Integrations',
+    icon: 'link',
+    image: '../brand_assets/infographics/custom-integrations.png',
+    hero: {
+      heading: 'Custom <em>Integrations.</em>',
+      subtitle: 'Every business runs differently. We design automation systems built around your specific tools, team, and daily processes — not a generic template.',
+    },
+    stats: [
+      { val: '200+',  lbl: 'tools and platforms we can connect' },
+      { val: '2 wks', lbl: 'average time from audit to first automation live' },
+      { val: '0',     lbl: 'coding knowledge required on your end' },
+    ],
+    problem: {
+      watermark: '200+',
+      heading: 'Your tools don\'t talk to each other — and your team pays the price.',
+      copy: [
+        'Most growing businesses end up with a stack of disconnected tools: a CRM here, a booking system there, accounting software somewhere else. Information gets manually copied between them every single day.',
+        'The fix isn\'t to replace everything. It\'s to connect what you already have — and automate the handoffs in between.',
+      ],
+    },
+    howItWorks: {
+      heading: 'A workflow built around your business, not a template.',
+      steps: [
+        { title: 'Workflow audit',        desc: 'We map your current tools and identify exactly where time and data are being lost.' },
+        { title: 'System designed',       desc: 'We design an integration architecture that connects your stack end to end.' },
+        { title: 'Built and tested',      desc: 'The automation is built, stress-tested, and refined before going live.' },
+        { title: 'Handed off with docs',  desc: 'You get a working system and documentation so your team knows exactly how it works.' },
+      ],
+    },
+    whoItsFor: {
+      heading: 'Any business with a stack of tools that don\'t talk to each other.',
+      copy: 'If your team is regularly copying information between systems, or if a process involves more than two tools and a human in the middle, we can automate it.',
+      tags: ['Operations teams','Marketing agencies','SaaS companies','E-commerce brands','Healthcare clinics','Logistics companies','Franchise groups','Professional services'],
+    },
+    cta: {
+      heading: 'Ready to connect the pieces?',
+      subtitle: 'Book a free 30-minute call. We\'ll audit your current stack and show you exactly what can be integrated and automated.',
+    },
+  },
+];
+
+/* ═══════════════════════════════════════════════════════
+   RENDER PANEL — generates the 6-block HTML for each service
+═══════════════════════════════════════════════════════ */
+function renderPanel(svc) {
+  const statsHTML = svc.stats.map((s, i) => `
+    <div class="svc-stat anim anim-d${i + 1}">
+      <div class="svc-stat-val">${s.val}</div>
+      <div class="svc-stat-lbl">${s.lbl}</div>
+    </div>
+  `).join('');
+
+  const stepsHTML = svc.howItWorks.steps.map((s, i) => `
+    <div class="svc-step anim anim-d${Math.min(i + 1, 3)}">
+      <div class="svc-step-track">
+        <div class="svc-step-dot"></div>
+        <div class="svc-step-line"></div>
+      </div>
+      <div class="svc-step-body">
+        <div class="svc-step-title">${i + 1}. ${s.title}</div>
+        <div class="svc-step-desc">${s.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const pillsHTML = svc.whoItsFor.tags.map(t =>
+    `<span class="svc-pill">${t}</span>`
+  ).join('');
+
+  const copyHTML = svc.problem.copy.map(p => `<p>${p}</p>`).join('');
+
+  return `
+    <!-- B1: HERO -->
+    <div class="svc-block svc-block-hero">
+      <div class="svc-glow"></div>
+      <div class="svc-two-col">
+        <div class="svc-col-text">
+          <p class="svc-eyebrow anim">${svc.label}</p>
+          <h1 class="svc-h1 anim anim-d1">${svc.hero.heading}</h1>
+          <div class="svc-rule anim anim-d1"></div>
+          <p class="svc-copy anim anim-d2">${svc.hero.subtitle}</p>
+          <a class="btn-svc anim anim-d3"
+             href="https://cal.com/flowbuild/free-automation-audit"
+             data-cal-link="flowbuild/free-automation-audit"
+             data-cal-origin="https://cal.com">
+            Get a free audit
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="svc-col-visual anim anim-d2">
+          <img class="svc-img" src="${svc.image}" alt="${svc.label} workflow" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- B2: STATS -->
+    <div class="svc-stats-wrap">
+      <div class="svc-stats-card">${statsHTML}</div>
+    </div>
+
+    <!-- divider -->
+    <hr style="border:none;height:1px;background:rgba(0,180,176,0.08);margin:0 56px;">
+
+    <!-- B3: PROBLEM -->
+    <div class="svc-block svc-problem-block">
+      <div class="svc-watermark" aria-hidden="true">${svc.problem.watermark}</div>
+      <div class="svc-problem-inner">
+        <p class="svc-eyebrow anim">The Problem</p>
+        <h2 class="svc-h2 anim anim-d1">${svc.problem.heading}</h2>
+        <div class="svc-rule anim anim-d1"></div>
+        <div class="svc-copy anim anim-d2">${copyHTML}</div>
+      </div>
+    </div>
+
+    <!-- divider -->
+    <hr style="border:none;height:1px;background:rgba(0,180,176,0.08);margin:0 56px;">
+
+    <!-- B4: HOW IT WORKS -->
+    <div class="svc-block">
+      <div class="svc-two-col rev">
+        <div class="svc-col-text">
+          <p class="svc-eyebrow anim">How It Works</p>
+          <h2 class="svc-h2 anim anim-d1">${svc.howItWorks.heading}</h2>
+          <div class="svc-rule anim anim-d1"></div>
+          <div class="svc-timeline">${stepsHTML}</div>
+        </div>
+        <div class="svc-col-visual anim anim-d2">
+          <img class="svc-img svc-img-dim" src="${svc.image}" alt="${svc.label} diagram" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- divider -->
+    <hr style="border:none;height:1px;background:rgba(0,180,176,0.08);margin:0 56px;">
+
+    <!-- B5: WHO IT'S FOR -->
+    <div class="svc-block">
+      <div class="svc-two-col">
+        <div class="svc-col-visual anim">
+          <div class="svc-pills">${pillsHTML}</div>
+        </div>
+        <div class="svc-col-text">
+          <p class="svc-eyebrow anim">Who It's For</p>
+          <h2 class="svc-h2 anim anim-d1">${svc.whoItsFor.heading}</h2>
+          <div class="svc-rule anim anim-d1"></div>
+          <p class="svc-copy anim anim-d2">${svc.whoItsFor.copy}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B6: CTA -->
+    <div class="svc-cta-block">
+      <h2 class="svc-cta-h anim">${svc.cta.heading}</h2>
+      <p class="svc-cta-sub anim anim-d1">${svc.cta.subtitle}</p>
+      <a class="btn-svc anim anim-d2" style="align-self:center;"
+         href="https://cal.com/flowbuild/free-automation-audit"
+         data-cal-link="flowbuild/free-automation-audit"
+         data-cal-origin="https://cal.com">
+        Book a free call
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BUILD TABS + PANELS
+═══════════════════════════════════════════════════════ */
+const barInner   = document.getElementById('bar-inner');
+const svcContent = document.getElementById('svc-content');
+
+SERVICES.forEach(svc => {
+  const tab = document.createElement('button');
+  tab.className = 'svc-tab';
+  tab.dataset.slug = svc.slug;
+  tab.setAttribute('role', 'tab');
+  tab.setAttribute('id', 'tab-' + svc.slug);
+  tab.setAttribute('aria-controls', 'panel-' + svc.slug);
+  tab.innerHTML = `<i data-lucide="${svc.icon}" style="width:16px;height:16px;stroke:currentColor;stroke-width:1.8;fill:none;"></i><span>${svc.label}</span>`;
+  tab.addEventListener('click', () => navigate(svc.slug));
+  barInner.appendChild(tab);
+
+  const panel = document.createElement('div');
+  panel.className = 'svc-panel';
+  panel.id = 'panel-' + svc.slug;
+  panel.setAttribute('role', 'tabpanel');
+  panel.setAttribute('aria-labelledby', 'tab-' + svc.slug);
+  panel.innerHTML = renderPanel(svc);
+  svcContent.appendChild(panel);
+});
+
+lucide.createIcons();
+
+/* ═══════════════════════════════════════════════════════
+   ROUTING
+═══════════════════════════════════════════════════════ */
+let activeSlug    = null;
+let transitioning = false;
+
+function slugFromHash() {
+  const h = location.hash.replace('#', '').trim();
+  return SERVICES.find(s => s.slug === h) ? h : SERVICES[0].slug;
+}
+
+function navigate(slug, push = true) {
+  if (slug === activeSlug || transitioning) return;
+  if (push) history.pushState(null, '', '#' + slug);
+
+  const prevPanel = activeSlug ? document.getElementById('panel-' + activeSlug) : null;
+  const nextPanel = document.getElementById('panel-' + slug);
+  const prevTab   = activeSlug ? document.getElementById('tab-' + activeSlug) : null;
+  const nextTab   = document.getElementById('tab-' + slug);
+
+  transitioning = true;
+
+  function activate() {
+    if (prevTab)   { prevTab.classList.remove('active'); prevTab.setAttribute('aria-selected','false'); }
+    if (prevPanel) { prevPanel.classList.remove('faded-in','visible'); }
+
+    nextTab.classList.add('active');
+    nextTab.setAttribute('aria-selected', 'true');
+    nextPanel.classList.add('visible');
+    nextTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      nextPanel.classList.add('faded-in');
+      observePanel(nextPanel);
+      transitioning = false;
+    }));
+
+    activeSlug = slug;
+  }
+
+  if (prevPanel && prevPanel.classList.contains('faded-in')) {
+    prevPanel.classList.remove('faded-in');
+    setTimeout(activate, 150);
+  } else {
+    activate();
+  }
+}
+
+window.addEventListener('popstate', () => navigate(slugFromHash(), false));
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════════════════ */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+
+function observePanel(panel) {
+  panel.querySelectorAll('.anim').forEach(el => {
+    el.classList.remove('in');
+    io.observe(el);
+  });
+}
+
+/* ── Init ── */
+navigate(slugFromHash(), false);
+document.getElementById('site-footer').style.display = '';
+
+/* ── Nav scroll class ── */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+/* ── Sync page-spacer to actual header height ── */
+const headerEl = document.getElementById('site-header');
+function syncHeaderHeight() {
+  document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+}
+new ResizeObserver(syncHeaderHeight).observe(headerEl);
+syncHeaderHeight();
+
+/* ── Resources dropdown ── */
+document.querySelectorAll('.nav-dropdown').forEach(dd => {
+  const btn = dd.querySelector('.nav-dd-btn');
+  btn.addEventListener('click', () => {
+    const open = dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', e => {
+    if (!dd.contains(e.target)) {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+</script>
+</body>
+</html>

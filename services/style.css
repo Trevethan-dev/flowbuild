@@ -570,6 +570,38 @@ hr.divider {
 }
 .sv-dot.on { width: 18px; background: var(--teal); }
 
+/* ── INFOGRAPHIC IMAGE ── */
+.sv-infographic-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.3),
+              0 0 0 1px rgba(0,180,176,0.06);
+  background: #1C1C1E;
+  scroll-snap-type: x mandatory;
+}
+.sv-infographic-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 680px;
+  border-radius: 14px;
+}
+@media (max-width: 767px) {
+  .sv-infographic-img { min-width: 580px; }
+  /* Right-edge gradient fade on the positioned parent — stays fixed while content scrolls */
+  .sv-mockup-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 52px; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(10,10,12,0.72));
+    border-radius: 0 14px 14px 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
 /* ── SECTION SHELL v2 ── */
 .sv-section {
   max-width: 1240px; margin: 0 auto;
