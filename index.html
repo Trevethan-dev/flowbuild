@@ -6,7 +6,7 @@
   <title>flowbuild — AI Automation for Growing Businesses</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
   <script>window.tailwind={config:{corePlugins:{preflight:false}}}</script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -398,9 +398,9 @@
       padding: 60px 40px; text-align: center;
     }
     .stat-n {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 56px; font-weight: 300; line-height: 1;
-      letter-spacing: -0.04em;
+      font-family: 'Barlow', sans-serif;
+      font-size: 56px; font-weight: 400; line-height: 1;
+      letter-spacing: -0.03em;
     }
     .stat-n em { color: var(--teal); font-style: normal; }
     .stat-l { font-size: 13px; color: var(--text-dim); margin-top: 10px; line-height: 1.5; }
@@ -496,6 +496,25 @@
     .footer-top-btn:hover {
       color: var(--teal); border-color: var(--teal-border);
       transform: translateY(-2px);
+    }
+
+    /* ── CTA INFOGRAPHIC ── */
+    .cta-infographic {
+      margin-top: 44px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-infographic img {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      margin: 0 auto;
+      box-shadow:
+        0 32px 80px rgba(0,0,0,0.55),
+        0 6px 24px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(0,180,176,0.1);
     }
 
     /* ── SERVICE CARD LINKS ── */
@@ -747,7 +766,11 @@
       .hero{ padding:130px 24px 80px; }
       hr.divider{ margin:0 24px; }
       .section{ padding:80px 24px; }
-      .services-grid{ grid-template-columns:1fr; }
+      .services-grid{ grid-template-columns:repeat(2,1fr); gap:8px; }
+      .s-card{ padding:24px 18px 20px; border-radius:12px; }
+      .s-icon{ width:40px; height:40px; border-radius:10px; margin-bottom:14px; }
+      .s-card h3{ font-size:16px; margin-bottom:6px; }
+      .s-card p{ font-size:12px; line-height:1.6; }
       .how-grid{ grid-template-columns:1fr; gap:48px; }
       .how-visual{ display:none; }
       .stats-inner{ grid-template-columns:repeat(2,1fr); }
@@ -791,7 +814,7 @@
       </button>
       <div class="nav-dd-menu" role="menu">
         <div class="nav-dd-menu-inner">
-        <a class="nav-dd-item" href="#" role="menuitem">
+        <a class="nav-dd-item" href="/about" role="menuitem">
           <div class="nav-dd-icon">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           </div>
@@ -800,7 +823,7 @@
             <div class="nav-dd-desc">Who we are</div>
           </div>
         </a>
-        <a class="nav-dd-item" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener" role="menuitem">
+        <a class="nav-dd-item" href="/contact" role="menuitem">
           <div class="nav-dd-icon">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           </div>
@@ -1008,10 +1031,7 @@
 
     <a class="s-card fade-up" href="/services#speed-to-lead">
       <div class="s-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" fill="rgba(0,180,176,0.14)" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M11 13l4 9" stroke="#00B4B0" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-        </svg>
+        <i data-lucide="zap" style="width:22px;height:22px;stroke:#00B4B0;stroke-width:1.8;fill:none;"></i>
       </div>
       <h3>Speed to Lead</h3>
       <p>The first business to respond wins. The moment someone reaches out, the workflow qualifies, routes, and sends a personalized reply before the lead goes cold.</p>
@@ -1021,12 +1041,7 @@
 
     <a class="s-card fade-up delay-1" href="/services#document-processing">
       <div class="s-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" fill="rgba(0,180,176,0.11)" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="14,2 14,8 20,8" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M8 13h4M8 17h3" stroke="#00B4B0" stroke-width="1.3" stroke-linecap="round" opacity="0.6"/>
-          <path d="M14 13.5l1.5 1.5 2.5-2.5" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <i data-lucide="file-text" style="width:22px;height:22px;stroke:#00B4B0;stroke-width:1.8;fill:none;"></i>
       </div>
       <h3>Document Processing</h3>
       <p>Your team shouldn't spend hours moving data between systems. We build automations that extract, organize, and send the right information to the right place.</p>
@@ -1036,14 +1051,7 @@
 
     <a class="s-card fade-up delay-2" href="/services#follow-up-sequences">
       <div class="s-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M17 1l4 4-4 4" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M7 23l-4-4 4-4" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round"/>
-          <rect x="7" y="9" width="10" height="6" rx="1" fill="rgba(0,180,176,0.14)" stroke="#00B4B0" stroke-width="1.3"/>
-          <path d="M7 11l5 3 5-3" stroke="#00B4B0" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
+        <i data-lucide="refresh-cw" style="width:22px;height:22px;stroke:#00B4B0;stroke-width:1.8;fill:none;"></i>
       </div>
       <h3>Follow-up Sequences</h3>
       <p>Most leads are lost because nobody follows up at the right time. We create lead nurturing sequences that keep your business in front of warm leads.</p>
@@ -1053,12 +1061,7 @@
 
     <a class="s-card fade-up" href="/services#database-reactivation">
       <div class="s-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <ellipse cx="12" cy="5" rx="9" ry="3" fill="rgba(0,180,176,0.14)" stroke="#00B4B0" stroke-width="1.5"/>
-          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" stroke="#00B4B0" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" stroke="#00B4B0" stroke-width="1.3" stroke-linecap="round" opacity="0.45"/>
-          <path d="M13.5 9.5L11 13h3.5l-2.5 4" stroke="#00CECC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <i data-lucide="database" style="width:22px;height:22px;stroke:#00B4B0;stroke-width:1.8;fill:none;"></i>
       </div>
       <h3>Database Reactivation</h3>
       <p>You might be sitting on a gold mine without noticing. We pull dormant leads and past clients, segment by where they dropped off, and send personalized outreach designed to restart the conversation.</p>
@@ -1068,14 +1071,7 @@
 
     <a class="s-card fade-up delay-1" href="/services#reporting-alerts">
       <div class="s-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="14" width="4" height="7" rx="1" fill="rgba(0,180,176,0.1)" stroke="#00B4B0" stroke-width="1.4"/>
-          <rect x="10" y="9" width="4" height="12" rx="1" fill="rgba(0,180,176,0.15)" stroke="#00B4B0" stroke-width="1.4"/>
-          <rect x="17" y="5" width="4" height="16" rx="1" fill="rgba(0,180,176,0.2)" stroke="#00B4B0" stroke-width="1.4"/>
-          <circle cx="20" cy="5.5" r="3.2" fill="#00B4B0"/>
-          <path d="M20 4.1v1.8" stroke="#0D1117" stroke-width="1.1" stroke-linecap="round"/>
-          <circle cx="20" cy="6.6" r="0.5" fill="#0D1117"/>
-        </svg>
+        <i data-lucide="bar-chart-3" style="width:22px;height:22px;stroke:#00B4B0;stroke-width:1.8;fill:none;"></i>
       </div>
       <h3>Reporting & Alerts</h3>
       <p>Know what is happening without checking five different tools. We build dashboards and alerts that keep you updated in real time. 
@@ -1086,14 +1082,7 @@
 
     <a class="s-card fade-up delay-2" href="/services#custom-integrations">
       <div class="s-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <rect x="1" y="1" width="7" height="7" rx="1.5" fill="rgba(0,180,176,0.12)" stroke="#00B4B0" stroke-width="1.4"/>
-          <rect x="16" y="1" width="7" height="7" rx="1.5" fill="rgba(0,180,176,0.12)" stroke="#00B4B0" stroke-width="1.4"/>
-          <rect x="8.5" y="16" width="7" height="7" rx="1.5" fill="rgba(0,180,176,0.12)" stroke="#00B4B0" stroke-width="1.4"/>
-          <path d="M8 4.5h8" stroke="#00B4B0" stroke-width="1.4" stroke-linecap="round"/>
-          <path d="M4.5 8v4a3.5 3.5 0 0 0 3.5 3.5h1" stroke="#00B4B0" stroke-width="1.4" stroke-linecap="round"/>
-          <path d="M19.5 8v4a3.5 3.5 0 0 1-3.5 3.5h-1" stroke="#00B4B0" stroke-width="1.4" stroke-linecap="round"/>
-        </svg>
+        <i data-lucide="link" style="width:22px;height:22px;stroke:#00B4B0;stroke-width:1.8;fill:none;"></i>
       </div>
       <h3>Custom Integrations</h3>
       <p>Every business works differently, so your automation should too. After a workflow audit, we design personalized systems around your team, tools, and daily processes.</p>
@@ -1208,138 +1197,13 @@ We map your current process and identify the tasks that can be automated, simpli
       Book a free call
       <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
+    <br></br>
     <p class="cta-note">No commitment required. We typically respond within 24 hours.</p>
 
-    <!-- ── BROWSER DEMO ── -->
-    <div class="demo-scroll">
-    <div class="demo-browser">
-
-      <!-- Title bar -->
-      <div class="demo-bar">
-        <div class="demo-traffic">
-          <span style="background:#FF5F57;"></span>
-          <span style="background:#FEBC2E;"></span>
-          <span style="background:#28C840;"></span>
-        </div>
-        <div class="demo-bar-title">Content Idea Generator</div>
-        <div class="demo-bar-sched">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Schedule: Weekly, Mon 9:00am
-        </div>
-      </div>
-
-      <!-- Subtitle bar -->
-      <div class="demo-subbar">From trending ideas to ready-to-post content calendar, every Monday at 9am.</div>
-
-      <!-- Workflow canvas -->
-      <div class="demo-content">
-
-        <!-- Connection lines SVG (viewBox matches demo-content 860×230) -->
-        <svg class="demo-conn-svg" viewBox="0 0 860 230" preserveAspectRatio="none">
-          <defs>
-            <marker id="da" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
-              <path d="M0,0.5 L0,5.5 L6,3z" fill="#9CA3AF"/>
-            </marker>
-            <marker id="da-teal" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
-              <path d="M0,0.5 L0,5.5 L6,3z" fill="#00B4B0"/>
-            </marker>
-          </defs>
-          <!-- Import → Filter -->
-          <path d="M 118 81 C 160 81, 170 81, 213 81" stroke="#9CA3AF" stroke-width="1.8" fill="none" marker-end="url(#da)"/>
-          <!-- Filter → AI Generate -->
-          <path d="M 275 81 C 318 81, 328 81, 371 81" stroke="#9CA3AF" stroke-width="1.8" fill="none" marker-end="url(#da)"/>
-          <!-- AI Generate → Draft Captions -->
-          <path d="M 430 81 C 472 81, 482 81, 526 81" stroke="#9CA3AF" stroke-width="1.8" fill="none" marker-end="url(#da)"/>
-          <!-- Draft → Google Sheets (curves up) -->
-          <path d="M 585 81 C 612 81, 612 62, 626 62" stroke="#00B4B0" stroke-width="1.8" fill="none" marker-end="url(#da-teal)" opacity="0.8"/>
-          <!-- Draft → Slack (curves down) -->
-          <path d="M 585 81 C 612 81, 612 168, 626 168" stroke="#00B4B0" stroke-width="1.8" fill="none" marker-end="url(#da-teal)" opacity="0.8"/>
-        </svg>
-
-        <!-- Node 1: Import (circle center x=88, y=81) -->
-        <div class="demo-node" style="left:88px;">
-          <div class="demo-node-circ">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00B4B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </div>
-          <span class="demo-node-type">Import</span>
-          <div class="demo-sources">
-            <div class="demo-src">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              Google Trends
-            </div>
-            <div class="demo-src">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              Reddit API
-            </div>
-          </div>
-        </div>
-
-        <!-- Node 2: Filter (diamond center x=244, y=81) -->
-        <div class="demo-node" style="left:244px; top:56px;">
-          <div class="demo-diamond-wrap">
-            <div class="demo-diamond-shape"></div>
-            <div class="demo-diamond-ico">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
-            </div>
-          </div>
-          <span class="demo-node-lbl">Filter by<br>industry</span>
-        </div>
-
-        <!-- Node 3: AI Generate (circle center x=401, y=81) -->
-        <div class="demo-node" style="left:401px;">
-          <div class="demo-node-circ">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00B4B0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7.5H22l-6.5 4.7 2.5 7.5L12 17.3 5.5 21.7l2.5-7.5L1.5 9.5H10L12 2z"/></svg>
-          </div>
-          <span class="demo-node-lbl">AI Generate<br>Ideas</span>
-        </div>
-
-        <!-- Node 4: Draft Captions (circle center x=556, y=81) -->
-        <div class="demo-node" style="left:556px;">
-          <div class="demo-node-circ">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00B4B0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </div>
-          <span class="demo-node-lbl">Draft<br>Captions</span>
-        </div>
-
-        <!-- Output 1: Google Sheets (top: 36px = center y≈62) -->
-        <div class="demo-out-card" style="top:36px;">
-          <div class="demo-out-ico" style="background:#E8F5E9;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-          </div>
-          <div>
-            <div class="demo-out-name">Google Sheets — Content Calendar</div>
-            <div class="demo-out-status"><span class="demo-sdot"></span>Added 12 ideas, Monday 9:02am</div>
-          </div>
-        </div>
-
-        <!-- Output 2: Slack (bottom:36px → top≈142, center y≈168) -->
-        <div class="demo-out-card" style="bottom:36px;">
-          <div class="demo-out-ico" style="background:#F3EEFF;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
-          </div>
-          <div>
-            <div class="demo-out-name">Slack — #marketing</div>
-            <div class="demo-out-status"><span class="demo-sdot"></span>Weekly brief sent, Monday 9:03am</div>
-          </div>
-        </div>
-
-      </div><!-- /demo-content -->
-
-      <!-- Carousel footer -->
-      <div class="demo-footer">
-        <button class="demo-arr">&#8249;</button>
-        <div class="demo-dot-row">
-          <span class="demo-di"></span>
-          <span class="demo-di on"></span>
-          <span class="demo-di"></span>
-          <span class="demo-di"></span>
-          <span class="demo-di"></span>
-        </div>
-        <button class="demo-arr">&#8250;</button>
-      </div>
-
-    </div><!-- /demo-browser -->
-    </div><!-- /demo-scroll -->
+    <!-- ── INFOGRAPHIC ── -->
+    <div class="cta-infographic">
+      <img src="infographics/1.png" alt="Automation workflow example" />
+    </div>
 
   </div>
 </div>
@@ -1378,6 +1242,7 @@ We map your current process and identify the tasks that can be automated, simpli
         <div class="footer-col">
           <p class="footer-col-head">Company</p>
           <ul>
+            <li><a href="/about">About</a></li>
             <li><a href="/#services">Services</a></li>
             <li><a href="/#process">How it works</a></li>
             <li><a href="/#results">Results</a></li>
@@ -1556,5 +1421,7 @@ document.querySelectorAll('.nav-dropdown').forEach(dd => {
   });
 });
 </script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

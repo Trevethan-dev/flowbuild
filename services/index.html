@@ -6,7 +6,7 @@
   <title>Services — flowbuild</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
 
@@ -23,9 +23,10 @@
     }
 
     /* Override style.css nav fixed positioning — handled by wrapper */
+    /* Keep position:relative so nav creates its own stacking context above svc-bar */
     #site-header > nav {
-      position: static;
-      z-index: auto;
+      position: relative;
+      z-index: 10;
     }
 
     .page-spacer { height: var(--header-h, 144px); }
@@ -126,8 +127,8 @@
     .svc-two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;           /* vertically center both columns */
+      gap: 52px;
+      align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
@@ -137,6 +138,12 @@
     /* Reverse: swap columns on desktop via order */
     .svc-two-col.rev .svc-col-text   { order: 2; }
     .svc-two-col.rev .svc-col-visual { order: 1; }
+
+    /* How It Works: image gets 60%, text gets 40%
+       Note: order:1 item takes column 1, so larger fr must be column 1 */
+    .svc-two-col.rev {
+      grid-template-columns: 3fr 2fr;
+    }
 
     .svc-col-text {
       display: flex;
@@ -234,9 +241,7 @@
         0 0 0 1px rgba(0,180,176,0.08);
     }
     .svc-img-dim {
-      opacity: 0.82;
-      transform: scale(0.93);
-      transform-origin: center;
+      opacity: 0.88;
     }
 
     /* ══════════════════════════════════════════════
@@ -272,11 +277,11 @@
       background: rgba(0,180,176,0.14);
     }
     .svc-stat-val {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Barlow', sans-serif;
       font-size: 38px;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       color: var(--text);
     }
     .svc-stat-lbl {
@@ -311,10 +316,14 @@
       transform: translate(-50%, -50%);
       z-index: 0;
     }
-    .svc-problem-inner {
-      max-width: 680px;
+    .svc-problem-align {
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
+    }
+    .svc-problem-inner {
+      max-width: 680px;
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -538,7 +547,7 @@
       </button>
       <div class="nav-dd-menu" role="menu">
         <div class="nav-dd-menu-inner">
-          <a class="nav-dd-item" href="#" role="menuitem">
+          <a class="nav-dd-item" href="/about" role="menuitem">
             <div class="nav-dd-icon">
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             </div>
@@ -547,7 +556,7 @@
               <div class="nav-dd-desc">Who we are</div>
             </div>
           </a>
-          <a class="nav-dd-item" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener" role="menuitem">
+          <a class="nav-dd-item" href="/contact" role="menuitem">
             <div class="nav-dd-icon">
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
             </div>
@@ -569,7 +578,7 @@
       </div>
     </li>
   </ul>
-  <a class="btn btn-primary" href="https://cal.com/flowbuild/free-automation-audit" target="_blank" rel="noopener">
+  <a class="btn btn-primary" href="/contact">
     Book a free call
     <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
@@ -617,6 +626,7 @@
         <div class="footer-col">
           <p class="footer-col-head">Company</p>
           <ul>
+            <li><a href="/about">About</a></li>
             <li><a href="/#services">Services</a></li>
             <li><a href="/#process">How it works</a></li>
             <li><a href="/#results">Results</a></li>
@@ -675,12 +685,12 @@ const SERVICES = [
     image: '../brand_assets/infographics/speed-to-lead.png',
     hero: {
       heading: 'Speed to <em>Lead.</em>',
-      subtitle: 'The first business to respond wins. We make sure that\'s always you — with personalized replies in under 60 seconds, 24/7.',
+      subtitle: 'The first business to respond wins. We make sure that\'s always you, with personalized replies in under 60 seconds, 24/7.',
     },
     stats: [
-      { val: '10x',     lbl: 'more conversions with sub-60s response' },
-      { val: '47 hrs',  lbl: 'average business response time' },
-      { val: '<90 sec', lbl: 'your response time with us' },
+      { val: '10x',     lbl: 'more conversions when you respond in under 5 minutes' },
+      { val: '47 hrs',  lbl: 'average business response time before automations' },
+      { val: '<90 sec', lbl: 'average response time with FlowBuild' },
     ],
     problem: {
       watermark: '47 hrs',
@@ -691,7 +701,7 @@ const SERVICES = [
       ],
     },
     howItWorks: {
-      heading: 'From form submit to replied — in seconds.',
+      heading: 'From form submit to replied. All in seconds.',
       steps: [
         { title: 'Lead captured',              desc: 'A form is submitted and all details are captured instantly.' },
         { title: 'Qualified automatically',    desc: 'The system checks the lead against your criteria and routes accordingly.' },
@@ -957,9 +967,7 @@ function renderPanel(svc) {
           <div class="svc-rule anim anim-d1"></div>
           <p class="svc-copy anim anim-d2">${svc.hero.subtitle}</p>
           <a class="btn-svc anim anim-d3"
-             href="https://cal.com/flowbuild/free-automation-audit"
-             data-cal-link="flowbuild/free-automation-audit"
-             data-cal-origin="https://cal.com">
+             href="/contact">
             Get a free audit
             <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -981,11 +989,13 @@ function renderPanel(svc) {
     <!-- B3: PROBLEM -->
     <div class="svc-block svc-problem-block">
       <div class="svc-watermark" aria-hidden="true">${svc.problem.watermark}</div>
-      <div class="svc-problem-inner">
-        <p class="svc-eyebrow anim">The Problem</p>
-        <h2 class="svc-h2 anim anim-d1">${svc.problem.heading}</h2>
-        <div class="svc-rule anim anim-d1"></div>
-        <div class="svc-copy anim anim-d2">${copyHTML}</div>
+      <div class="svc-problem-align">
+        <div class="svc-problem-inner">
+          <p class="svc-eyebrow anim">The Problem</p>
+          <h2 class="svc-h2 anim anim-d1">${svc.problem.heading}</h2>
+          <div class="svc-rule anim anim-d1"></div>
+          <div class="svc-copy anim anim-d2">${copyHTML}</div>
+        </div>
       </div>
     </div>
 
@@ -1030,9 +1040,7 @@ function renderPanel(svc) {
       <h2 class="svc-cta-h anim">${svc.cta.heading}</h2>
       <p class="svc-cta-sub anim anim-d1">${svc.cta.subtitle}</p>
       <a class="btn-svc anim anim-d2" style="align-self:center;"
-         href="https://cal.com/flowbuild/free-automation-audit"
-         data-cal-link="flowbuild/free-automation-audit"
-         data-cal-origin="https://cal.com">
+         href="/contact">
         Book a free call
         <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>

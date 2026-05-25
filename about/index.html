@@ -165,32 +165,37 @@
     .hero-grid {
       display: grid;
       grid-template-columns: 55fr 45fr;
-      gap: 80px;
+      gap: 40px;
       align-items: center;
     }
-    .hero-text { display: flex; flex-direction: column; gap: 24px; }
+    .hero-text { display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center; }
     .hero-h1 {
       font-size: clamp(32px, 3.2vw, 40px) !important;
       letter-spacing: -0.025em;
       color: var(--text);
-      max-width: 560px;
     }
     .hero-p {
       font-size: 16px; line-height: 1.7;
-      color: #9CA3AF; max-width: 480px;
+      color: #9CA3AF;
     }
     .hero-photo-wrap {
-      display: flex; align-items: center; justify-content: flex-end;
-    }
-    .hero-photo-placeholder {
-      width: 100%; max-width: 360px;
-      aspect-ratio: 3 / 4;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(0,180,176,0.15);
-      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted);
-      font-size: 13px; letter-spacing: 0.08em;
+    }
+    .hero-photo-img {
+      width: 100%;
+      max-width: 300px;
+      max-height: 380px;
+      display: block;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center top;
+      box-shadow:
+        0 32px 72px rgba(0,0,0,0.5),
+        0 8px 24px rgba(0,0,0,0.28),
+        0 0 0 1px rgba(0,180,176,0.1);
+    }
+    @media (max-width: 960px) {
+      .hero-photo-img { max-width: 260px; max-height: 320px; }
     }
 
     /* ── S2: BACKSTORY ── */
@@ -451,7 +456,7 @@
       <p class="hero-p">Flowbuild is a business automation agency based in Canada and Mexico. We design and build custom AI workflows that handle the repetitive work — so you and your team can focus on what actually moves the needle.</p>
     </div>
     <div class="hero-photo-wrap anim anim-d1">
-      <div class="hero-photo-placeholder">Photo</div>
+      <img class="hero-photo-img" src="../brand_assets/DCBE932D-D790-4DA5-8DB3-0D09F3F62181.jpg" alt="Emilio, founder of flowbuild" />
     </div>
   </div>
 </section>
