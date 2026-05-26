@@ -16,7 +16,7 @@
       --teal-bright: #00CECC;
       --teal-glow: rgba(0,180,176,0.14);
       --teal-border: rgba(0,180,176,0.22);
-      --bg: #0D1117;
+--bg: #0D1117;
       --surface: #141B24;
       --surface-2: #1A2330;
       --surface-3: #202C3A;
@@ -145,7 +145,7 @@
       width: 600px; height: 500px; pointer-events: none;
       background: radial-gradient(ellipse at 10% 20%, rgba(0,180,176,0.07) 0%, transparent 65%);
     }
-    .eyebrow {
+.eyebrow {
       font-size: 11px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--teal); margin-bottom: 18px;
@@ -290,6 +290,7 @@
       border: 1px solid var(--border-strong);
       border-radius: 16px;
       padding: 28px;
+      position: relative; overflow: hidden;
     }
     .faq-title {
       font-size: 13.5px; font-weight: 500; color: var(--text-dim);
@@ -317,7 +318,7 @@
     }
     .faq-item.open .faq-a { max-height: 200px; padding-bottom: 14px; }
 
-    /* ── FOOTER CTA BANNER ── */
+/* ── FOOTER CTA BANNER ── */
     .cta-banner {
       background: linear-gradient(135deg, #0a2118 0%, #0d2a1f 50%, #081a12 100%);
       border-top: 1px solid rgba(0,180,176,0.12);
@@ -385,7 +386,7 @@
       nav { padding: 18px 24px; }
       .nav-links { display: none; }
       .contact-hero { padding: 120px 24px 48px; }
-      .contact-body { padding: 0 24px 80px; grid-template-columns: 1fr; }
+.contact-body { padding: 0 24px 80px; grid-template-columns: 1fr; }
       .contact-right { order: -1; }
       .cta-banner { padding: 48px 24px; }
       .cta-banner-inner { flex-direction: column; }
@@ -471,6 +472,7 @@
   <p>Book a free 30-minute session. We'll look at your business together and show you exactly where automation can save you the most time.</p>
 </div>
 
+
 <!-- ═══════════════════════════════ BODY ══════════════════════════════ -->
 <div class="contact-body">
 
@@ -482,7 +484,6 @@
         Free Automation Audit
       </div>
       <h3>Choose a time that works for you</h3>
-      <p>We'll spend 30 minutes exploring where automation fits into your business — no commitment, no sales pressure.</p>
       <div class="cal-meta">
         <div class="cal-meta-item">
           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -555,7 +556,7 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="faq-a">
-          Yes, completely. We don't charge for discovery calls. Our goal is to understand your business and give you an honest assessment — even if automation isn't the right fit yet.
+          Yes, completely. We don't charge for discovery calls. Our goal is to understand your business and give you an honest assessment, even if automation isn't the right fit yet.
         </div>
       </div>
 
@@ -565,7 +566,7 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="faq-a">
-          30 minutes. We keep it focused — you'll leave with a clear picture of what we'd build and what it would save you in time and cost.
+          30 minutes. We keep it focused. You'll leave with a clear picture of what we'd build and what it would save you in time and cost.
         </div>
       </div>
 
@@ -575,7 +576,7 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="faq-a">
-          We'll send you a short summary of what we discussed along with a proposed automation plan. If it makes sense to work together, we'll outline next steps — no pressure.
+          We'll send you a short summary of what we discussed along with a proposed automation plan. If it makes sense to work together, we'll outline next steps.
         </div>
       </div>
 
@@ -585,7 +586,7 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="faq-a">
-          Not at all. We work with business owners, not developers. Just come with a sense of what tasks you wish were automatic — we handle the rest.
+          Not at all. We work with business owners, not developers. Just come with a sense of what tasks you wish were automatic and we handle the rest.
         </div>
       </div>
     </div>
