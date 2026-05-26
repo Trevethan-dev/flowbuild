@@ -186,7 +186,7 @@
       position: relative;
     }
     .cal-panel-header {
-      padding: 28px 32px 24px;
+      padding: 20px 24px 18px;
       border-bottom: 1px solid var(--border);
     }
     .cal-session-label {
@@ -214,7 +214,7 @@
 
     #my-cal-inline {
       width: 100%;
-      min-height: 620px;
+      min-height: 500px;
     }
 
     /* Cal.com dark theme overrides */
@@ -320,7 +320,7 @@
 
 /* ── FOOTER CTA BANNER ── */
     .cta-banner {
-      background: linear-gradient(135deg, #0a2118 0%, #0d2a1f 50%, #081a12 100%);
+      background: linear-gradient(135deg, rgba(0,180,176,0.07) 0%, rgba(0,180,176,0.02) 100%);
       border-top: 1px solid rgba(0,180,176,0.12);
       padding: 72px 56px;
       position: relative; overflow: hidden;
@@ -338,10 +338,10 @@
     }
     .cta-banner h2 {
       font-size: clamp(28px, 4vw, 48px) !important;
-      letter-spacing: -0.02em; color: #e8f5f0; margin-bottom: 8px;
+      letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px;
     }
     .cta-banner h2 em { font-style: italic; color: var(--teal); }
-    .cta-banner p { font-size: 15px; color: rgba(200,230,220,0.65); line-height: 1.6; }
+    .cta-banner p { font-size: 15px; color: var(--text-dim); line-height: 1.6; }
 
     /* ── FOOTER ── */
     footer {
@@ -531,13 +531,13 @@
 
       <div class="social-label">Follow along</div>
       <div class="social-links">
-        <a class="social-link" href="https://linkedin.com/company/flowbuild" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a class="social-link" aria-label="LinkedIn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a class="social-link" href="https://x.com/flowbuild" target="_blank" rel="noopener" aria-label="X / Twitter">
+        <a class="social-link" aria-label="X / Twitter">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a class="social-link" href="https://instagram.com/flowbuild" target="_blank" rel="noopener" aria-label="Instagram">
+        <a class="social-link" aria-label="Instagram">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
         <a class="social-link" href="mailto:hello@flowbuild.ca" aria-label="Email">
@@ -662,13 +662,13 @@
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 flowbuild. All rights reserved.</span>
       <div class="footer-social">
-        <a href="https://linkedin.com/company/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+        <a class="footer-social-link" aria-label="LinkedIn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href="https://x.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="X">
+        <a class="footer-social-link" aria-label="X">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://instagram.com/flowbuild" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+        <a class="footer-social-link" aria-label="Instagram">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
         <a href="mailto:hello@flowbuild.ca" class="footer-social-link" aria-label="Email">
